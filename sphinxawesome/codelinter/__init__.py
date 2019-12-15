@@ -14,18 +14,19 @@ in all sort of ways.
 
 from io import BytesIO
 from subprocess import Popen, PIPE
+from typing import Dict, Any, Set, Optional
 from docutils import nodes
 from sphinx.builders import Builder
 from sphinx.locale import __
 from sphinx.util import logging
 from sphinx.util.nodes import get_node_line
 from sphinx.util.console import red, darkgreen
-from typing import Dict, Any, Set, Optional
 from sphinx.application import Sphinx
 
 logger = logging.getLogger(__name__)
 
 __version__ = '0.1.0'
+
 
 class CodeLinter(Builder):
     '''
