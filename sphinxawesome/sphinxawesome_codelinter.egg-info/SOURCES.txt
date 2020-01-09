@@ -1,7 +1,0 @@
-README.md
-setup.py
-sphinxawesome/codelinter/__init__.py
-sphinxawesome/sphinxawesome_codelinter.egg-info/PKG-INFO
-sphinxawesome/sphinxawesome_codelinter.egg-info/SOURCES.txt
-sphinxawesome/sphinxawesome_codelinter.egg-info/dependency_links.txt
-sphinxawesome/sphinxawesome_codelinter.egg-info/top_level.txt
