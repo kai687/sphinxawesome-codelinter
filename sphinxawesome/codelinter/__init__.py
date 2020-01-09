@@ -72,7 +72,7 @@ class CodeLinter(Builder):
                 pipe = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE)
                 _, err = pipe.communicate(input=io_obj.read())
                 if err:
-                    logger.warning(red(f'Problem in {code["source"]}: ')
+                    logger.warning(red(f'Problem in {code["language"]}: ')
                                    + err.decode())
                 else:
                     logger.info(' ' + darkgreen('OK'))
