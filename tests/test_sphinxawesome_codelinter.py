@@ -60,8 +60,10 @@ def test_codelinter_empty(app, status):
     assert not os.listdir(app.outdir)
     assert 'codelinter_languages' in app.config
     assert '[Line 6] linting json' not in status.getvalue()
-    assert '[Line 10] linting json' not in status.getvalue()
+    assert '[Line 10] linting' not in status.getvalue()
     assert '[Line 14] linting json' not in status.getvalue()
+    assert '[Line 18] linting yaml' not in status.getvalue()
+    assert '[Line 26] linting yaml' not in status.getvalue()
 
 
 @pytest.mark.sphinx('dummy', srcdir='example',
@@ -78,8 +80,10 @@ def test_dummy_configured(app, status):
     assert app.outdir.exists()
     assert not os.listdir(app.outdir)
     assert '[Line 6] linting json' not in status.getvalue()
-    assert '[Line 10] linting json' not in status.getvalue()
+    assert '[Line 10] linting' not in status.getvalue()
     assert '[Line 14] linting json' not in status.getvalue()
+    assert '[Line 18] linting yaml' not in status.getvalue()
+    assert '[Line 26] linting yaml' not in status.getvalue()
 
 
 @pytest.mark.sphinx('codelinter', srcdir='example',
@@ -87,9 +91,9 @@ def test_dummy_configured(app, status):
                         'extensions': ['sphinxawesome.codelinter'],
                         'codelinter_languages': {'json': 'python -m json.tool'}
                     })
-def test_codelinter_configured(app, status, warning):
+def test_codelinter_json(app, status, warning):
     '''
-    Test codelinter builder.
+    Test codelinter builder for JSON code blocks.
     '''
 
     app.builder.build_all()
@@ -97,6 +101,33 @@ def test_codelinter_configured(app, status, warning):
     assert app.outdir.exists()
     assert not os.listdir(app.outdir)
     assert '[Line 6] linting json' in status.getvalue()
-    assert '[Line 10] linting json' not in status.getvalue()
+    assert '[Line 10] linting' not in status.getvalue()
     assert '[Line 14] linting json' in status.getvalue()
+    assert '[Line 18] linting yaml' not in status.getvalue()
+    assert '[Line 26] linting yaml' not in status.getvalue()
     assert 'Problem in json' in warning.getvalue()
+
+
+@pytest.mark.sphinx('codelinter', srcdir='example',
+                    confoverrides={
+                        'extensions': ['sphinxawesome.codelinter'],
+                        'codelinter_languages': {'yaml': 'yamllint -'}
+                    })
+def test_codelinter_yaml(app, status, warning):
+    '''
+    Test codelinter builder for YAML code blocks.
+    '''
+
+    app.builder.build_all()
+
+    assert app.outdir.exists()
+    assert not os.listdir(app.outdir)
+    assert '[Line 6] linting json' not in status.getvalue()
+    assert '[Line 10] linting' not in status.getvalue()
+    assert '[Line 14] linting json' not in status.getvalue()
+    assert '[Line 18] linting yaml' in status.getvalue()
+    assert '[Line 26] linting yaml' in status.getvalue()
+    #  assert 'Problem in yaml' in warning.getvalue()
+    # TODO: currently yamllint doesn't throw an error. I suspect this has
+    # something do to with the way yamllint is being called `yamllint -` and
+    # subprocess.PIPE. Further investigations are required here

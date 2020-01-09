@@ -14,3 +14,17 @@ Just a normal paragraph.
 .. code-block:: json
 
    $ invalid json
+
+.. code-block:: yaml
+
+   ---
+   valid_yaml:
+     - one
+     - two
+     - three
+
+.. code-block:: yaml
+
+   invalid-yaml:
+   - one
+   invalid
