@@ -50,12 +50,15 @@ class CodeLinter(Builder):
         return
 
     def write_doc(self, docname: str, doctree: nodes.Node) -> None:
-        # ``codelinter_languages`` is a dictionary with the language as key
-        # and the command to run on the code block as value. This is specified
-        # in ``conf.py``.
-        # For example:
-        #   codelinter_languages = { 'json' : python3 -m json.tool }
-        #   pipes any JSON code block to the JSON module of python.
+        '''
+        ``codelinter_languages`` is a dictionary with the language as key
+        and the command to run on the code block as value. This is specified
+        in ``conf.py``.
+
+        For example:
+            codelinter_languages = { 'json' : python3 -m json.tool }
+            pipes any JSON code block to the JSON module of python.
+        '''
         code_lang = self.app.config.codelinter_languages
 
         for code in doctree.traverse(nodes.literal_block):
