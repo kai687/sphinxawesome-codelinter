@@ -10,3 +10,7 @@ Just a normal paragraph.
 .. code-block::
 
    $ don't lint this
+
+.. code-block:: json
+
+   $ invalid json

@@ -5,6 +5,7 @@ from sphinxawesome.codelinter import __version__
 
 def test_version():
     '''test that the version we expect is indeed here.'''
+
     assert __version__ == '0.1.0'
 
 
@@ -49,7 +50,7 @@ def test_extension_enabled(app):
 
 @pytest.mark.sphinx('codelinter', srcdir='example',
                     confoverrides={'extensions': ['sphinxawesome.codelinter']})
-def test_codelinter_empty(app):
+def test_codelinter_empty(app, status):
     '''
     Test the codelinter builder without any configuration.
     '''
@@ -58,6 +59,9 @@ def test_codelinter_empty(app):
     assert app.outdir.exists()
     assert not os.listdir(app.outdir)
     assert 'codelinter_languages' in app.config
+    assert '[Line 6] linting json' not in status.getvalue()
+    assert '[Line 10] linting json' not in status.getvalue()
+    assert '[Line 14] linting json' not in status.getvalue()
 
 
 @pytest.mark.sphinx('dummy', srcdir='example',
@@ -65,13 +69,17 @@ def test_codelinter_empty(app):
                         'extensions': ['sphinxawesome.codelinter'],
                         'codelinter_languages': {'json': 'python -m json.tool'}
                     })
-def test_dummy_configured(app):
+def test_dummy_configured(app, status):
     '''
     Test normal builder with configured codelinter_languages dict.
     '''
+
     app.builder.build_all()
     assert app.outdir.exists()
     assert not os.listdir(app.outdir)
+    assert '[Line 6] linting json' not in status.getvalue()
+    assert '[Line 10] linting json' not in status.getvalue()
+    assert '[Line 14] linting json' not in status.getvalue()
 
 
 @pytest.mark.sphinx('codelinter', srcdir='example',
@@ -79,10 +87,16 @@ def test_dummy_configured(app):
                         'extensions': ['sphinxawesome.codelinter'],
                         'codelinter_languages': {'json': 'python -m json.tool'}
                     })
-def test_codelinter_configured(app):
+def test_codelinter_configured(app, status, warning):
     '''
     Test codelinter builder.
     '''
+
     app.builder.build_all()
+
     assert app.outdir.exists()
     assert not os.listdir(app.outdir)
+    assert '[Line 6] linting json' in status.getvalue()
+    assert '[Line 10] linting json' not in status.getvalue()
+    assert '[Line 14] linting json' in status.getvalue()
+    assert 'Problem in json' in warning.getvalue()
