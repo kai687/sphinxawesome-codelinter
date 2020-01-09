@@ -64,14 +64,17 @@ class CodeLinter(Builder):
         for code in doctree.traverse(nodes.literal_block):
             if code['language'] in code_lang:
                 line_no = get_node_line(code)
-                logger.info('[Line %d] linting %s', line_no, code["language"],
+                logger.info('[Line %d] linting %s ', line_no, code["language"],
                             nonl=True)
                 io_obj = BytesIO(code.astext().encode())
                 # subprocess likes the input as list
                 cmd = code_lang[code['language']].split()
+                logger.debug(cmd)
+                logger.debug(code.astext())
                 pipe = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE)
                 _, err = pipe.communicate(input=io_obj.read())
                 if err:
+                    logger.info(' ')
                     logger.warning(red(f'Problem in {code["language"]}: ')
                                    + err.decode())
                 else:
