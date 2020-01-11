@@ -77,15 +77,14 @@ class CodeLinter(Builder):
                     pipe = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE)
                     out, err = pipe.communicate(input=io_obj.read())
                 except FileNotFoundError:
-                    logger.warning(
-                        red('Skipping because command does not exist: '),
-                    )
+                    logger.error(f'command: "{code_lang[code["language"]]}" '
+                                 'does not exist!')
                     continue
 
                 logger.info(' ')
                 if pipe.returncode != 0:
                     logger.warning(red(f'Problem in {code["language"]}: '),
-                                       nonl=True)
+                                   nonl=True)
                     if err:
                         logger.warning(err.decode())
                     else:
@@ -101,7 +100,7 @@ class CodeLinter(Builder):
 def setup(app: Sphinx) -> Dict[str, Any]:
     '''register this extension with Sphinx'''
     app.add_builder(CodeLinter)
-    app.add_config_value('codelinter_languages', {}, None)
+    app.add_config_value('codelinter_languages', {}, 'env')
 
     return {'version': '0.1',
             'parallel_read_safe': True,
