@@ -24,7 +24,15 @@ Just a normal paragraph.
      - three
 
 .. code-block:: yaml
-
+   
+   ---
    invalid-yaml:
    - one
    invalid
+
+
+.. literalinclude:: test.json
+   :language: json
+
+.. don't lint code below, no language defined.
+.. literalinclude:: test.json
