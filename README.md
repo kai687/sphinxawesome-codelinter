@@ -1,7 +1,7 @@
 Sphinx Awesome Codelinter
 =========================
 
-![GitHub](https://img.shields.io/github/license/kai687/sphinxawesome-codelinter?style=flat-square)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Pipe all code blocks into your favorite linter.
 
