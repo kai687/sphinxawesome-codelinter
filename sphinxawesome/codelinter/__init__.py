@@ -1,9 +1,11 @@
 '''
 Lint code blocks.
 
-Use a subprocess pipe to pipe the code block into a pre-defined program.
+Use a subprocess.Pipe to pipe the code block into a pre-defined program.
 This is inherently unsafe, as arbitrary code could be passed to a shell
-for execution. The implementation is basically `cat codeblock | some_tool`.
+for execution.
+
+The implementation mimicks ``cat codeblock | some_tool``.
 
 This was designed for linting YAML or JSON code blocks, but can be abused
 in all sort of ways.
@@ -56,7 +58,7 @@ class CodeLinter(Builder):
         in ``conf.py``.
 
         For example:
-            codelinter_languages = { 'json' : python3 -m json.tool }
+            codelinter_languages = {'json': 'python3 -m json.tool'}
             pipes any JSON code block to the JSON module of python.
         '''
         code_lang = self.app.config.codelinter_languages
@@ -72,11 +74,16 @@ class CodeLinter(Builder):
                 logger.debug(cmd)
                 logger.debug(code.astext())
                 pipe = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE)
-                _, err = pipe.communicate(input=io_obj.read())
-                if err:
+                out, err = pipe.communicate(input=io_obj.read())
+                if pipe.returncode != 0:
                     logger.info(' ')
-                    logger.warning(red(f'Problem in {code["language"]}: ')
-                                   + err.decode())
+                    logger.warning(red(f'Problem in {code["language"]}: '),
+                                       nonl=True)
+                    if err:
+                        logger.warning(err.decode())
+                    else:
+                        # e.g. yamllint writes errors to stdout
+                        logger.warning(out.decode())
                 else:
                     logger.info(' ' + darkgreen('OK'))
 
@@ -85,6 +92,7 @@ class CodeLinter(Builder):
 
 
 def setup(app: Sphinx) -> Dict[str, Any]:
+    '''register this extension with Sphinx'''
     app.add_builder(CodeLinter)
     app.add_config_value('codelinter_languages', {}, None)
 
