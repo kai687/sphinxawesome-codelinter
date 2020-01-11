@@ -1,6 +1,8 @@
 Sphinx Awesome Codelinter
 =========================
 
+![GitHub](https://img.shields.io/github/license/kai687/sphinxawesome-codelinter?style=flat-square)
+
 Pipe all code blocks into your favorite linter.
 
 This Sphinx extension exposes every `code-block`, `highlight`, and other
