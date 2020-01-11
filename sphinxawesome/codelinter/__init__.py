@@ -73,10 +73,17 @@ class CodeLinter(Builder):
                 cmd = code_lang[code['language']].split()
                 logger.debug(cmd)
                 logger.debug(code.astext())
-                pipe = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE)
-                out, err = pipe.communicate(input=io_obj.read())
+                try:
+                    pipe = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE)
+                    out, err = pipe.communicate(input=io_obj.read())
+                except FileNotFoundError:
+                    logger.warning(
+                        red('Skipping because command does not exist: '),
+                    )
+                    continue
+
+                logger.info(' ')
                 if pipe.returncode != 0:
-                    logger.info(' ')
                     logger.warning(red(f'Problem in {code["language"]}: '),
                                        nonl=True)
                     if err:
