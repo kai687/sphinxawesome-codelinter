@@ -65,7 +65,7 @@ def test_codelinter_empty(app, status):
     assert '[Line 18] linting yaml' not in status.getvalue()
     assert '[Line 26] linting yaml' not in status.getvalue()
     assert '[Line 34] linting json' not in status.getvalue()
-    assert '[Line 38] linting json' not in status.getvalue()
+    assert '[Line 38] linting' not in status.getvalue()
 
 
 @pytest.mark.sphinx('dummy', srcdir='example',
@@ -87,7 +87,7 @@ def test_dummy_configured(app, status):
     assert '[Line 18] linting yaml' not in status.getvalue()
     assert '[Line 26] linting yaml' not in status.getvalue()
     assert '[Line 34] linting json' not in status.getvalue()
-    assert '[Line 38] linting json' not in status.getvalue()
+    assert '[Line 38] linting' not in status.getvalue()
 
 
 @pytest.mark.sphinx('codelinter', srcdir='example',
@@ -103,7 +103,8 @@ def test_codelinter_non_existing_tool(app, status, warning):
     app.builder.build_all()
     assert app.outdir.exists()
     assert not os.listdir(app.outdir)
-    assert 'Skipping because command does not exist' in warning.getvalue()
+    assert 'does not exist' in warning.getvalue()
+
 
 @pytest.mark.sphinx('codelinter', srcdir='example',
                     confoverrides={
@@ -125,7 +126,7 @@ def test_codelinter_json(app, status, warning):
     assert '[Line 18] linting yaml' not in status.getvalue()
     assert '[Line 26] linting yaml' not in status.getvalue()
     assert '[Line 34] linting json' in status.getvalue()
-    assert '[Line 38] linting json' not in status.getvalue()
+    assert '[Line 38] linting' not in status.getvalue()
     assert 'Problem in json' in warning.getvalue()
 
 
@@ -149,7 +150,7 @@ def test_codelinter_yaml(app, status, warning):
     assert '[Line 18] linting yaml' in status.getvalue()
     assert '[Line 26] linting yaml' in status.getvalue()
     assert '[Line 34] linting json' not in status.getvalue()
-    assert '[Line 37] linting json' not in status.getvalue()
+    assert '[Line 38] linting' not in status.getvalue()
     assert 'Problem in yaml' in warning.getvalue()
 
 
@@ -176,6 +177,6 @@ def test_codelinter_both(app, status, warning):
     assert '[Line 18] linting yaml' in status.getvalue()
     assert '[Line 26] linting yaml' in status.getvalue()
     assert '[Line 34] linting json' in status.getvalue()
-    assert '[Line 37] linting json' not in status.getvalue()
+    assert '[Line 38] linting' not in status.getvalue()
     assert 'Problem in yaml' in warning.getvalue()
     assert 'Problem in json' in warning.getvalue()
