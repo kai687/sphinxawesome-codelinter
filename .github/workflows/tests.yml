@@ -6,17 +6,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
-        matrix: 
-            python-version: [3.5, 3.6, 3.7, 3.8]
+      matrix: 
+        python-version: [3.5, 3.6, 3.7, 3.8]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-        $HOME/.poetry/bin/poetry install
-        $HOME/.poetry/bin/poetry run tox
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+          export PATH=$HOME/.poetry/bin:$PATH
+          poetry install
+          poetry run tox
