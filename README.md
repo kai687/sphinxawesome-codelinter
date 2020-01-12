@@ -8,8 +8,8 @@ and expose them to an external tool. For example, it is possible to check, if
 all JSON code blocks are valid JSON. This ensures, that copied and pasted code
 blocks work as expected.
 
-This extension acts like a Sphinx builder, e.g. like the Sphinx linkcheck
-builder.
+This extension acts like a Sphinx builder, for example the Sphinx linkcheck
+builder. 
 
 
 Installation
@@ -20,6 +20,7 @@ Install the extension:
 ```console
 pip install sphinxawesome-codelinter
 ```
+
 
 Configuration
 -------------
@@ -49,13 +50,22 @@ codelinter_languages = {
 }
 ```
 
-The `-` tells yamllint to read from `stdin`. After configuring the extension,
-you can use `sphinx-build -b codelinter ...` like other Sphinx builders. No
-output should be written to disk.
+The `-` tells yamllint to read from `stdin`. You can also write your own
+tools, that can read from `stdin`. These tools should return a value of 0, if
+no errors were found, a non-zero value otherwise.
+
+After configuring the extension, you can use `sphinx-build -b codelinter ...`
+like other Sphinx builders. No output will be written to disk. If the linter
+exits with a non-zero return value, a warning will be logged. You can use the
+`sphinx-build -W` to turn those warnings into errors to stop the build
+pipeline.
 
 You can use any reStructuredText directive, that gets parsed as a
 `literal_block` node. The directives `.. code-block:: json`, `.. highlight::
 json` will both work. 
 
-You can also use the `..literalinclude:: <filename>` diggrective, if the
+You can also use the `..literalinclude:: <filename>` directive, if the
 language is specified with the `:language: json` field.
+
+**Caution:** The value of the codelinter_languages dictionary will be used as
+provided. No additional safe-guards are in place to prevent abuse.
