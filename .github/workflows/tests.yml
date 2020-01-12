@@ -18,6 +18,7 @@ jobs:
       - name: Install dependencies
         run: |
           curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-          export PATH=$HOME/.poetry/bin:$PATH
+          source $HOME/.poetry/env
           poetry install
-          poetry run pytest
+      - name: Run Pytest
+        run: poetry run pytest --cov tests --cov-report term
