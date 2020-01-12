@@ -21,6 +21,7 @@ Install the extension:
 pip install sphinxawesome-codelinter
 ```
 
+
 Configuration
 -------------
 
@@ -49,9 +50,15 @@ codelinter_languages = {
 }
 ```
 
-The `-` tells yamllint to read from `stdin`. After configuring the extension,
-you can use `sphinx-build -b codelinter ...` like other Sphinx builders. No
-output should be written to disk.
+The `-` tells yamllint to read from `stdin`. You can also write your own
+tools, that can read from `stdin`. These tools should return a value of 0, if
+no errors were found, a non-zero value otherwise.
+
+After configuring the extension, you can use `sphinx-build -b codelinter ...`
+like other Sphinx builders. No output will be written to disk. If the linter
+exits with a non-zero return value, a warning will be logged. You can use the
+`sphinx-build -W` to turn those warnings into errors to stop the build
+pipeline.
 
 You can use any reStructuredText directive, that gets parsed as a
 `literal_block` node. The directives `.. code-block:: json`, `.. highlight::
