@@ -6,8 +6,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
+      max-parallel: 4
       matrix:
-        python-version: [3.8]
+        python-version: [3.5, 3.6, 3.7, 3.8]
 
     steps:
       - uses: actions/checkout@v2
@@ -21,4 +22,6 @@ jobs:
           source $HOME/.poetry/env
           poetry install
       - name: Run Pytest
-        run: poetry run pytest --cov tests --cov-report term
+        run: |
+          source $HOME/.poetry/env
+          poetry run pytest --cov tests --cov-report term
