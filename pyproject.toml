@@ -9,15 +9,23 @@ packages = [
   { include = "sphinxawesome" }
 ]
 
+# pytest, yamllint, and pytest-cov are actually dev-dependencies
+# but `poetry install` will overwrite anything in the venv that tox created.
+# Providing them as extras is a hack found on StackOverflow to get around
+# that.
+
 [tool.poetry.dependencies]
 python = "^3.6"
 sphinx = "^2.0"
+pytest = {version = "^5.2", optional = true}
+yamllint = {version = "^1.20", optional = true }
+pytest-cov = {version = "^2.8", optional = true}
 
 [tool.poetry.dev-dependencies]
-pytest = "^4.6"
-yamllint = "^1.20"
-pytest-cov = "^2.8"
 tox = "^3.14"
+
+[tool.poetry.extras]
+test = ["pytest", "yamllint", "pytest-cov"]
 
 [build-system]
 requires = ["poetry>=0.12"]
