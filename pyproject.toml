@@ -2,7 +2,7 @@
 name = "sphinxawesome-codelinter"
 version = "0.1.0"
 description = "A Sphinx extension that enables running linters over code blocks"
-authors = ["Kai Welke <kai.welke@gmail.com>"]
+authors = ["Kai Welke <17420240+kai687@users.noreply.github.com>"]
 packages = [
   { include = "sphinxawesome" }
 ]
