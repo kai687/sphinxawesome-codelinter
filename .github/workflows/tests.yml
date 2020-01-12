@@ -21,7 +21,9 @@ jobs:
           curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
           source $HOME/.poetry/env
           poetry install
-      - name: Run Pytest
+      - name: Run Tox against different versions of Sphinx
         run: |
           source $HOME/.poetry/env
-          poetry run pytest --cov tests --cov-report term
+          poetry run tox
+
+        # poetry run pytest --cov tests --cov-report term
