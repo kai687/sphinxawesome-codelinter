@@ -21,6 +21,7 @@ Install the extension:
 pip install sphinxawesome-codelinter
 ```
 
+Unit tests are being run against Python >=3.6 and Sphinx >=2.0. 
 
 Configuration
 -------------
