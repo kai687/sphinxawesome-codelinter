@@ -18,9 +18,6 @@ pytest = "^5.2"
 yamllint = "^1.20"
 pytest-cov = "^2.8"
 
-[tool.poetry.extras]
-test = ["pytest", "yamllint", "pytest-cov"]
-
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
