@@ -19,6 +19,7 @@ jobs:
       - name: Run Tox against different versions of Sphinx
         run: |
           curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+          pip install tox
           source $HOME/.poetry/env
           poetry run tox
 
