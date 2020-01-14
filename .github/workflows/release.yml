@@ -24,6 +24,8 @@ jobs:
           source $HOME/.poetry/env
           poetry build
       - name: Publish to PyPI
+        env:
+          POETRY_PYPI_TOKEN_PYPI = ${{ secrets.PYPI_TOKEN }}
         run: |
-          echo "This is just a test."
-
+          source $HOME/.poetry/env
+          poetry publish
