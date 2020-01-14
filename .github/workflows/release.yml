@@ -2,8 +2,6 @@ name: Publish a new version on PyPI
 
 on:
   push:
-    branches:
-      - master
     tags:
       - '*.*.*'
 
