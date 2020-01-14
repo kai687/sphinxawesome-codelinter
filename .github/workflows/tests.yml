@@ -1,6 +1,11 @@
 name: Run unit tests against different versions of Python
 
-on: [push]
+on:
+  push:
+    paths:
+      - 'sphinxawesome/**'
+      - 'tests/**'
+      - '.github/workflows/tests.yml'
 
 jobs:
   build:
