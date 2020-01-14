@@ -6,15 +6,20 @@ on:
       - 'sphinxawesome/**'
       - 'tests/**'
       - '.github/workflows/tests.yml'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'sphinxawesome/**'
+      - 'tests/**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 20
       matrix:
         python-version: [3.6, 3.7, 3.8]
-        sphinx-version: [2.0.* , 2.1.* ,2.2.* , 2.3.* ]
+        sphinx-version: ['2.0.*', '2.1.*', '2.2.*', '2.3.*']
 
     steps:
       - uses: actions/checkout@v2
