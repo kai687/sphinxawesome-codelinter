@@ -8,8 +8,7 @@ and expose them to an external tool. For example, it is possible to check, if
 all JSON code blocks are valid JSON. This ensures, that copied and pasted code
 blocks work as expected.
 
-This extension acts like a Sphinx builder, for example the Sphinx linkcheck
-builder. 
+This extension provides a new builder, `sphinx-build -b codelinter`.
 
 
 Installation
@@ -21,8 +20,9 @@ Install the extension:
 pip install sphinxawesome-codelinter
 ```
 
-This Sphinx extension should work with Python versions newer than 3.6 and recent Sphinx releases.
-Unit tests are being run against Python 3.6, 3.7, 3.8 and Sphinx 2.0, 2.1, 2.2, and 2.3. 
+This Sphinx extension should work with Python versions newer than 3.6 and
+recent Sphinx releases.  Unit tests are being run against Python 3.6, 3.7, 3.8
+and Sphinx 2.0, 2.1, 2.2, and 2.3.
 
 Configuration
 -------------
@@ -33,9 +33,9 @@ To enable this extension in Sphinx, add it to the list of extensions:
 extensions = ['sphinxawesome.codelinter']
 ```
 
-The extension is configured via the `codelinter_languages` dictionary, which 
-is empty by default. That is, no code blocks will be processed unless you provide 
-the language and the tool to process the language as key, value pair. 
+The extension is configured via the `codelinter_languages` dictionary, which
+is empty by default. That is, no code blocks will be processed unless you
+provide the language and the tool to process the language as key, value pair.
 For example, to pass all JSON blocks to the python builtin JSON tools, use:
 
 ```python
@@ -44,8 +44,8 @@ codelinter_languages = {
 }
 ```
 
-which would return an error on non-valid JSON code. For linting YAML code blocks, 
-you could install the `yamllint` tool and then add:
+which would return an error on non-valid JSON code. For linting YAML code
+blocks, you could install the `yamllint` tool and then add:
 
 ```python
 codelinter_languages = {
