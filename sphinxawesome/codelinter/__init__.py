@@ -27,7 +27,7 @@ from sphinx.application import Sphinx
 
 logger = logging.getLogger(__name__)
 
-__version__ = '0.1.0'
+__version__ = '1.0.0'
 
 
 class CodeLinter(Builder):
@@ -102,6 +102,6 @@ def setup(app: Sphinx) -> Dict[str, Any]:
     app.add_builder(CodeLinter)
     app.add_config_value('codelinter_languages', {}, 'env')
 
-    return {'version': '0.1',
+    return {'version': '1.0',
             'parallel_read_safe': True,
             'parallel_write_safe': True}
