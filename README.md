@@ -2,6 +2,7 @@ Sphinx Awesome Codelinter
 =========================
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![PyPI version](https://img.shields.io/pypi/v/sphinxawesome-codelinter)](https://img.shields.io/pypi/v/sphinxawesome-codelinter)
 
 An extension for the Sphinx documentation suite to iterate over code blocks
 and expose them to an external tool. For example, it is possible to check, if
