@@ -5,10 +5,9 @@ Sphinx Awesome Codelinter
 [![PyPI version](https://img.shields.io/pypi/v/sphinxawesome-codelinter)](https://img.shields.io/pypi/v/sphinxawesome-codelinter)
 [![Test Status](https://img.shields.io/github/workflow/status/kai687/sphinxawesome-codelinter/Run%20unit%20tests%20against%20different%20versions%20of%20Python?label=tests)](https://img.shields.io/github/workflow/status/kai687/sphinxawesome-codelinter/Run%20unit%20tests%20against%20different%20versions%20of%20Python?label=tests)
 
-An extension for the Sphinx documentation suite to iterate over code blocks
-and expose them to an external tool. For example, it is possible to check, if
-all JSON code blocks are valid JSON. This ensures, that copied and pasted code
-blocks work as expected.
+This extension for the Sphinx documentation suite allows you to iterate over code blocks
+and expose them to an external tool. This can be used to make sure, that code blocks are valid. 
+For more information about the Sphinx project, visit the website at http://www.sphinx-doc.org/.
 
 This extension provides a new builder, `sphinx-build -b codelinter`.
 
@@ -29,7 +28,8 @@ and Sphinx 2.0, 2.1, 2.2, and 2.3.
 Configuration
 -------------
 
-To enable this extension in Sphinx, add it to the list of extensions:
+To enable this extension in Sphinx, add it to the list of extensions in the Sphinx 
+configuration file `conf.py`:
 
 ```python
 extensions = ['sphinxawesome.codelinter']
@@ -37,8 +37,8 @@ extensions = ['sphinxawesome.codelinter']
 
 The extension is configured via the `codelinter_languages` dictionary, which
 is empty by default. That is, no code blocks will be processed unless you
-provide the language and the tool to process the language as key, value pair.
-For example, to pass all JSON blocks to the python builtin JSON tools, use:
+provide the language and the tool to process the language as a key/value pair.
+For example, to pass all JSON blocks to the python builtin JSON module, use:
 
 ```python
 codelinter_languages = {
@@ -46,7 +46,7 @@ codelinter_languages = {
 }
 ```
 
-which would return an error on non-valid JSON code. For linting YAML code
+which would return an error for non-valid JSON code. For linting YAML code
 blocks, you could install the `yamllint` tool and then add:
 
 ```python
