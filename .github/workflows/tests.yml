@@ -1,17 +1,10 @@
+---
 name: Run unit tests against different versions of Python
 
 on:
-  push:
-    paths:
-      - 'sphinxawesome/**'
-      - 'tests/**'
-      - '.github/workflows/tests.yml'
-  pull_request:
-    branches:
-      - master
-    paths:
-      - 'sphinxawesome/**'
-      - 'tests/**'
+  [push, pull_request]:
+    paths-ignore:
+      - 'README.md'
 
 jobs:
   build:
