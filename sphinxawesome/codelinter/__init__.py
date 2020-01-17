@@ -15,7 +15,7 @@ in all sort of ways.
 """
 
 from io import BytesIO
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, STDOUT
 from typing import Dict, Any, Set, Optional
 from docutils import nodes
 from sphinx.builders import Builder
@@ -76,7 +76,7 @@ class CodeLinter(Builder):
                 logger.debug(cmd)
                 logger.debug(code.astext())
                 try:
-                    pipe = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE)
+                    pipe = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
                     out, err = pipe.communicate(input=io_obj.read())
                 except FileNotFoundError:
                     logger.error(
@@ -87,11 +87,7 @@ class CodeLinter(Builder):
                 logger.info(" ")
                 if pipe.returncode != 0:
                     logger.warning(red(f'Problem in {code["language"]}: '), nonl=True)
-                    if err:
-                        logger.warning(err.decode())
-                    else:
-                        # e.g. yamllint writes errors to stdout
-                        logger.warning(out.decode())
+                    logger.warning(out.decode())
                 else:
                     logger.info(" " + darkgreen("OK"))
 
