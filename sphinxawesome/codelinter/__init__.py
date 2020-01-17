@@ -1,4 +1,4 @@
-'''
+"""
 Lint code blocks.
 
 Use a subprocess.Pipe to pipe the code block into a pre-defined program.
@@ -12,7 +12,7 @@ in all sort of ways.
 
 :copyright: Copyright 2019, Kai Welke.
 :license: MIT, see LICENSE for details
-'''
+"""
 
 from io import BytesIO
 from subprocess import Popen, PIPE
@@ -27,16 +27,17 @@ from sphinx.application import Sphinx
 
 logger = logging.getLogger(__name__)
 
-__version__ = '1.0.0'
+__version__ = "1.0.0"
 
 
 class CodeLinter(Builder):
-    '''
+    """
     A Builder that iterates over all literal blocks and passes pipes them into
     a tool for post-processing, for example linting.
-    '''
-    name = 'codelinter'
-    epilog = __('Lint code blocks.')
+    """
+
+    name = "codelinter"
+    epilog = __("Lint code blocks.")
     allow_parallel = True
 
     def init(self) -> None:
@@ -46,13 +47,13 @@ class CodeLinter(Builder):
         return self.env.found_docs
 
     def get_target_uri(self, docname: str, typ: Optional[str] = None) -> str:
-        return ''
+        return ""
 
     def prepare_writing(self, docnames: Set[str]) -> None:
         return
 
     def write_doc(self, docname: str, doctree: nodes.Node) -> None:
-        '''
+        """
         ``codelinter_languages`` is a dictionary with the language as key
         and the command to run on the code block as value. This is specified
         in ``conf.py``.
@@ -60,48 +61,47 @@ class CodeLinter(Builder):
         For example:
             codelinter_languages = {'json': 'python3 -m json.tool'}
             pipes any JSON code block to the JSON module of python.
-        '''
+        """
         code_lang = self.app.config.codelinter_languages
 
         for code in doctree.traverse(nodes.literal_block):
-            if code['language'] in code_lang:
+            if code["language"] in code_lang:
                 line_no = get_node_line(code)
-                logger.info('[Line %d] linting %s ', line_no, code["language"],
-                            nonl=True)
+                logger.info(
+                    "[Line %d] linting %s ", line_no, code["language"], nonl=True
+                )
                 io_obj = BytesIO(code.astext().encode())
                 # subprocess likes the input as list
-                cmd = code_lang[code['language']].split()
+                cmd = code_lang[code["language"]].split()
                 logger.debug(cmd)
                 logger.debug(code.astext())
                 try:
                     pipe = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE)
                     out, err = pipe.communicate(input=io_obj.read())
                 except FileNotFoundError:
-                    logger.error(f'command: "{code_lang[code["language"]]}" '
-                                 'does not exist!')
+                    logger.error(
+                        f'command: "{code_lang[code["language"]]}" ' "does not exist!"
+                    )
                     continue
 
-                logger.info(' ')
+                logger.info(" ")
                 if pipe.returncode != 0:
-                    logger.warning(red(f'Problem in {code["language"]}: '),
-                                   nonl=True)
+                    logger.warning(red(f'Problem in {code["language"]}: '), nonl=True)
                     if err:
                         logger.warning(err.decode())
                     else:
                         # e.g. yamllint writes errors to stdout
                         logger.warning(out.decode())
                 else:
-                    logger.info(' ' + darkgreen('OK'))
+                    logger.info(" " + darkgreen("OK"))
 
     def finish(self) -> None:
         pass
 
 
 def setup(app: Sphinx) -> Dict[str, Any]:
-    '''register this extension with Sphinx'''
+    """register this extension with Sphinx"""
     app.add_builder(CodeLinter)
-    app.add_config_value('codelinter_languages', {}, 'env')
+    app.add_config_value("codelinter_languages", {}, "env")
 
-    return {'version': '1.0',
-            'parallel_read_safe': True,
-            'parallel_write_safe': True}
+    return {"version": "1.0", "parallel_read_safe": True, "parallel_write_safe": True}
