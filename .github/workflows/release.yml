@@ -3,7 +3,7 @@ name: Publish a new version on PyPI
 on:
   push:
     tags:
-      - '*.*.*'
+      - "*.*.*"
 
 jobs:
   release:
