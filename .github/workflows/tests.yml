@@ -1,0 +1,30 @@
+---
+name: Run unit tests against different versions of Python
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+        sphinx-version: ["2.0.*", "2.1.*", "2.2.*", "2.3.*"]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install Sphinx
+        run: pip install sphinx==${{ matrix.sphinx-version }}
+      - name: Install dependencies
+        run: |
+          pip install yamllint pytest pytest-cov
+          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+          source $HOME/.poetry/env
+          poetry install -v --no-dev
+      - name: Run Pytest
+        run: |
+          pytest --cov tests --cov-report term

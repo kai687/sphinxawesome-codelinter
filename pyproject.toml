@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "sphinxawesome-codelinter"
+version = "1.0.2"
+description = "A Sphinx extension that enables running linters over code blocks"
+license = "MIT"
+readme = "README.md"
+authors = ["Kai Welke <17420240+kai687@users.noreply.github.com>"]
+classifiers = [
+  'Programming Language :: Python',
+  'Framework :: Sphinx',
+  'Framework :: Sphinx :: Extension',
+  'Topic :: Documentation',
+  'Topic :: Documentation :: Sphinx',
+  'Topic :: Software Development :: Documentation'
+]
+packages = [
+  { include = "sphinxawesome" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+sphinx = "^2.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+yamllint = "^1.20"
+pytest-cov = "^2.8"
+pre-commit = "^1.21.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.black]
+target-version = ['py36', 'py37', 'py38']
+exclude = '''
+/(
+  \.git
+| \.github
+)/
+'''
