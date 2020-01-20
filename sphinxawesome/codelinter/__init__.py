@@ -10,7 +10,7 @@ The implementation mimicks ``cat codeblock | some_tool``.
 This was designed for linting YAML or JSON code blocks, but can be abused
 in all sort of ways.
 
-:copyright: Copyright 2019, Kai Welke.
+:copyright: Copyright 2020, Kai Welke.
 :license: MIT, see LICENSE for details
 """
 

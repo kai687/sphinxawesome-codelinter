@@ -5,6 +5,7 @@ description = "A Sphinx extension to pass reStructuredText code blocks to extern
 license = "MIT"
 readme = "README.md"
 authors = ["Kai Welke <17420240+kai687@users.noreply.github.com>"]
+repository = "https://github.com/kai687/sphinxawesome-codelinter"
 classifiers = [
   'Programming Language :: Python',
   'Framework :: Sphinx',
