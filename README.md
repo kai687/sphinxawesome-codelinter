@@ -21,8 +21,7 @@ pip install sphinxawesome-codelinter
 ```
 
 This Sphinx extension should work with Python versions newer than 3.6 and recent Sphinx
-releases. Unit tests are being run against Python 3.6, 3.7, 3.8 and Sphinx 2.0, 2.1,
-2.2, and 2.3.
+releases. The versions against which the unit tests are run is in the file `.github/workflows/tests.yml` in this repository.
 
 ## Configuration
 
