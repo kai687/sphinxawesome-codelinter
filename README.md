@@ -5,10 +5,10 @@
 [![Test Status](https://img.shields.io/github/workflow/status/kai687/sphinxawesome-codelinter/Run%20unit%20tests%20against%20different%20versions%20of%20Python?label=tests)](https://img.shields.io/github/workflow/status/kai687/sphinxawesome-codelinter/Run%20unit%20tests%20against%20different%20versions%20of%20Python?label=tests)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-This extension for the Sphinx documentation suite allows you to iterate over code blocks
-and expose them to an external tool. This can be used to make sure, that code blocks are
-valid. For more information about the Sphinx project, visit the website at
-http://www.sphinx-doc.org/.
+This extension for the Sphinx documentation generator allows you to expose code blocks
+in your documentation to an external tool. This can be used to check that code blocks
+contain only valid code. For more information about the Sphinx project, visit the
+website at http://www.sphinx-doc.org/.
 
 This extension provides a new builder, `sphinx-build -b codelinter`.
 
@@ -21,7 +21,8 @@ pip install sphinxawesome-codelinter
 ```
 
 This Sphinx extension should work with Python versions newer than 3.6 and recent Sphinx
-releases. The versions against which the unit tests are run is in the file `.github/workflows/tests.yml` in this repository.
+releases. The versions against which the unit tests are run is in the file
+`.github/workflows/tests.yml` in this repository.
 
 ## Configuration
 
@@ -43,8 +44,8 @@ codelinter_languages = {
 }
 ```
 
-which would return an error for non-valid JSON code. For linting YAML code blocks, you
-could install the `yamllint` tool and then add:
+which returns an error for non-valid JSON code. For linting YAML code blocks, you could
+install the `yamllint` tool and then add:
 
 ```python
 codelinter_languages = {
@@ -54,12 +55,14 @@ codelinter_languages = {
 
 The `-` tells yamllint to read from `stdin`. You can also write your own tools, that can
 read from `stdin` and write to `stdout` or `stderr`. The only expectation is that any
-tools retun a value of 0, ifcno errors were found, a non-zero value otherwise.
+tools returns a value of 0, if no errors were found, a non-zero value otherwise.
 
-After configuring the extension, you can use `sphinx-build -b codelinter ...` like other
-Sphinx builders. No output will be written to disk. If the linter exits with a non-zero
-return value, a warning will be logged. You can use the `sphinx-build -W` option to turn
-those warnings into errors to stop the build process.
+## Use
+
+Use `sphinx-build -b codelinter` like other Sphinx builders. No output will be written
+to disk. If the linter exits with a non-zero return value, a warning will be logged. You
+can use the `sphinx-build -W` option to turn those warnings into errors to stop the
+build process.
 
 You can use any reStructuredText directive, that gets parsed as a `literal_block` node.
 For example, you can use `.. code-block:: json` as well as `.. highlight:: json`.
@@ -72,5 +75,5 @@ files.
    :language: json
 ```
 
-**Caution:** The value of the `codelinter_languages` dictionary will be used as
+**Caution:** The value of the `codelinter_languages` dictionary will be called as
 provided. No additional safe-guards are in place to prevent abuse.
