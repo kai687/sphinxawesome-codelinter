@@ -75,5 +75,5 @@ files.
    :language: json
 ```
 
-**Caution:** The value of the `codelinter_languages` dictionary will be called as
+> **Caution:** The value of the `codelinter_languages` dictionary will be called as
 provided. No additional safe-guards are in place to prevent abuse.
