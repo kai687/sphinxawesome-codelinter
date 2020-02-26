@@ -10,7 +10,7 @@ in your documentation to an external tool. This can be used to check that code b
 contain only valid code. For more information about the Sphinx project, visit the
 website at http://www.sphinx-doc.org/.
 
-This extension provides a new builder, `sphinx-build -b codelinter`.
+This extension provides a new builder: `sphinx-build -b codelinter`.
 
 ## Installation
 
@@ -33,7 +33,7 @@ configuration file `conf.py`:
 extensions = ['sphinxawesome.codelinter']
 ```
 
-The extension is configured via the `codelinter_languages` dictionary, which is empty by
+The extension is configured via the `codelinter_languages` dictionary which is empty by
 default. That is, no code blocks will be processed unless you provide the language and
 the tool to process the language as a key/value pair. For example, to pass all JSON
 blocks to the python builtin JSON module, use:
@@ -53,9 +53,9 @@ codelinter_languages = {
 }
 ```
 
-The `-` tells yamllint to read from `stdin`. You can also write your own tools, that can
+The `-` tells yamllint to read from `stdin`. You can also write your own tools that can
 read from `stdin` and write to `stdout` or `stderr`. The only expectation is that any
-tools returns a value of 0, if no errors were found, a non-zero value otherwise.
+tools returns a value of 0 if no errors were found, a non-zero value otherwise.
 
 ## Use
 
@@ -64,10 +64,10 @@ to disk. If the linter exits with a non-zero return value, a warning will be log
 can use the `sphinx-build -W` option to turn those warnings into errors to stop the
 build process.
 
-You can use any reStructuredText directive, that gets parsed as a `literal_block` node.
+You can use any reStructuredText directive that gets parsed as a `literal_block` node.
 For example, you can use `.. code-block:: json` as well as `.. highlight:: json`.
 
-You can also use the `..literalinclude:: <filename>` directive, to include code from
+You can also use the `..literalinclude:: <filename>` directive to include code from
 files.
 
 ```
