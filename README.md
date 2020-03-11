@@ -57,6 +57,9 @@ The `-` tells yamllint to read from `stdin`. You can also write your own tools t
 read from `stdin` and write to `stdout` or `stderr`. The only expectation is that any
 tools returns a value of 0 if no errors were found, a non-zero value otherwise.
 
+> **Caution:** The value of the `codelinter_languages` dictionary will be called as
+provided. No additional safe-guards are in place to prevent abuse.
+
 ## Use
 
 Use `sphinx-build -b codelinter` like other Sphinx builders. No output will be written
@@ -74,6 +77,3 @@ files.
 .. literalinclude:: code.json
    :language: json
 ```
-
-> **Caution:** The value of the `codelinter_languages` dictionary will be called as
-provided. No additional safe-guards are in place to prevent abuse.
