@@ -33,10 +33,12 @@ configuration file `conf.py`:
 extensions = ['sphinxawesome.codelinter']
 ```
 
-The extension is configured via the `codelinter_languages` dictionary which is empty by
-default. That is, no code blocks will be processed unless you provide the language and
-the tool to process the language as a key/value pair. For example, to pass all JSON
-blocks to the python builtin JSON module, use:
+To pass code blocks to an external tool, provide the language as a key and the tool as
+the associated value to the `codelinter_languages` dictionary. This dictionary is initially
+empty, so even if the extension is installed and included in the `extensions` list,
+no code blocks will be processed by default.
+
+For example, to pass all JSON blocks to the python builtin JSON module, use:
 
 ```python
 codelinter_languages = {
@@ -44,7 +46,7 @@ codelinter_languages = {
 }
 ```
 
-which returns an error for non-valid JSON code. For linting YAML code blocks, you could
+The python command returns an error for non-valid JSON code. For linting YAML code blocks, you could
 install the `yamllint` tool and then add:
 
 ```python
@@ -57,16 +59,6 @@ The `-` tells yamllint to read from `stdin`. You can also write your own tools t
 read from `stdin` and write to `stdout` or `stderr`. The only expectation is that any
 tools returns a value of 0 if no errors were found, a non-zero value otherwise.
 
-> **Caution:** The value of the `codelinter_languages` dictionary will be called as
-provided. No additional safe-guards are in place to prevent abuse.
-
-## Use
-
-Use `sphinx-build -b codelinter` like other Sphinx builders. No output will be written
-to disk. If the linter exits with a non-zero return value, a warning will be logged. You
-can use the `sphinx-build -W` option to turn those warnings into errors to stop the
-build process.
-
 You can use any reStructuredText directive that gets parsed as a `literal_block` node.
 For example, you can use `.. code-block:: json` as well as `.. highlight:: json`.
 
@@ -77,3 +69,13 @@ files.
 .. literalinclude:: code.json
    :language: json
 ```
+
+> **Caution:** The value of the `codelinter_languages` dictionary will be called as
+provided. No additional safe-guards are in place to prevent abuse.
+
+## Use
+
+Use `sphinx-build -b codelinter` like you would use other Sphinx builders. No output 
+will be written to disk. If the codelinter tool exits with a non-zero return value, 
+a warning will be logged. You can use the `sphinx-build -W` option to turn those 
+warnings into errors to stop the build process.
