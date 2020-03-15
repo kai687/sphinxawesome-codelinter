@@ -1,14 +1,7 @@
 ---
 name: Run unit tests against different versions of Python
 
-on:
-  push:
-    tags-ignore:
-      - "*.*.*"
-      - "*.*"
-  pull_request:
-    branches:
-      - master
+on: [push, pull_request]
 
 jobs:
   build:
