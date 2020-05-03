@@ -6,7 +6,7 @@ from sphinxawesome.codelinter import __version__
 def test_version():
     """test that the version we expect is indeed here."""
 
-    assert __version__ == "1.0.3"
+    assert __version__ == "1.0.4"
 
 
 def test_rootdir_fixture(rootdir):
