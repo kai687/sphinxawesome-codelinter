@@ -30,7 +30,7 @@ To enable this extension in Sphinx, add it to the list of extensions in the Sphi
 configuration file `conf.py`:
 
 ```python
-extensions = ['sphinxawesome.codelinter']
+extensions = ["sphinxawesome.codelinter"]
 ```
 
 To pass code blocks to an external tool, provide the language as a key and the tool as
@@ -42,7 +42,7 @@ For example, to pass all JSON blocks to the python builtin JSON module, use:
 
 ```python
 codelinter_languages = {
-  'json': 'python -m json.tool'
+  "json": "python -m json.tool"
 }
 ```
 
@@ -51,7 +51,7 @@ install the `yamllint` tool and then add:
 
 ```python
 codelinter_languages = {
-  'yaml': 'yamllint -'
+  "yaml": "yamllint -"
 }
 ```
 
