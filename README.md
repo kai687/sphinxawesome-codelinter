@@ -1,8 +1,9 @@
 # Sphinx Awesome Codelinter
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+![License](https://img.shields.io/github/license/kai687/sphinxawesome-codelinter?color=blue)
 [![PyPI version](https://img.shields.io/pypi/v/sphinxawesome-codelinter)](https://img.shields.io/pypi/v/sphinxawesome-codelinter)
 [![Test Status](https://img.shields.io/github/workflow/status/kai687/sphinxawesome-codelinter/Run%20unit%20tests%20against%20different%20versions%20of%20Python?label=tests)](https://img.shields.io/github/workflow/status/kai687/sphinxawesome-codelinter/Run%20unit%20tests%20against%20different%20versions%20of%20Python?label=tests)
+![Supported Python Versions](https://img.shields.io/pypi/pyversions/sphinxawesome-codelinter)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 This extension for the Sphinx documentation generator allows you to expose code blocks
@@ -21,8 +22,7 @@ pip install sphinxawesome-codelinter
 ```
 
 This Sphinx extension should work with Python versions newer than 3.6 and recent Sphinx
-releases. The versions against which the unit tests are run is in the file
-`.github/workflows/tests.yml` in this repository.
+releases.
 
 ## Configuration
 
