@@ -13,8 +13,9 @@ jobs:
         sphinx-version: ["2.2.*", "2.3.*", "2.4.*", "3.0.*"]
 
     env:
-      OS: ${{ matrix.os }}
-      PYTHON: "3.7"
+      PYTHON: ${{ matrix.python-version }}
+      SPHINX: ${{ matrix.sphinx-version }}
+      OS: "ubuntu"
 
     steps:
       - uses: actions/checkout@v2
@@ -39,5 +40,5 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage.xml
           flags: unittests
-          env_vars: OS,PYTHON
+          env_vars: OS,PYTHON,SPHINX
           fail_ci_if_error: true
