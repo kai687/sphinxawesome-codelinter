@@ -6,10 +6,15 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         python-version: [3.6, 3.7, 3.8]
         sphinx-version: ["2.2.*", "2.3.*", "2.4.*", "3.0.*"]
+
+    env:
+      OS: ${{ matrix.os }}
+      PYTHON: "3.7"
 
     steps:
       - uses: actions/checkout@v2
@@ -30,9 +35,9 @@ jobs:
           pytest --cov=./ --cov-report=term --cov-report=xml
       - name: Upload coverage report
         uses: codecov/codecov-action@v1
-        with: 
+        with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage.xml
           flags: unittests
           env_vars: OS,PYTHON
-          fail_ci_if_error: true        
+          fail_ci_if_error: true
