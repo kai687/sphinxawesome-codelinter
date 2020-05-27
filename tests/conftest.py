@@ -6,7 +6,7 @@ pytest_plugins = "sphinx.testing.fixtures"
 
 @pytest.fixture(scope="session")
 def rootdir():
-    return path(__file__).parent.abspath() / "example"
+    return path(__file__).parent.abspath()
 
 
 def pytest_configure(config):

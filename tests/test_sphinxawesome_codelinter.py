@@ -1,4 +1,5 @@
 import os
+
 import pytest
 from sphinxawesome.codelinter import __version__
 
@@ -12,18 +13,16 @@ def test_version():
 def test_rootdir_fixture(rootdir):
     """
     Test basic assumptions about test files/directories.
-    The test files are in './example/test-root'. I haven't found a way yet to
-    tell pytest/sphinx that I do not want an extra nesting level here.
+    The test files are in './test-root'.
     """
 
     conf_file = rootdir / "test-root" / "conf.py"
     index_file = rootdir / "test-root" / "index.rst"
-    assert "example" in rootdir
     assert conf_file.exists()
     assert index_file.exists()
 
 
-@pytest.mark.sphinx("dummy", srcdir="example")
+@pytest.mark.sphinx("dummy")
 def test_basic_config(app):
     """
     Test a basic compilation of a minimal configuration.
@@ -36,9 +35,7 @@ def test_basic_config(app):
 
 
 @pytest.mark.sphinx(
-    "dummy",
-    srcdir="example",
-    confoverrides={"extensions": ["sphinxawesome.codelinter"]},
+    "dummy", confoverrides={"extensions": ["sphinxawesome.codelinter"]},
 )
 def test_extension_enabled(app):
     """
@@ -52,9 +49,7 @@ def test_extension_enabled(app):
 
 
 @pytest.mark.sphinx(
-    "codelinter",
-    srcdir="example",
-    confoverrides={"extensions": ["sphinxawesome.codelinter"]},
+    "codelinter", confoverrides={"extensions": ["sphinxawesome.codelinter"]},
 )
 def test_codelinter_empty(app, status):
     """
@@ -76,7 +71,6 @@ def test_codelinter_empty(app, status):
 
 @pytest.mark.sphinx(
     "dummy",
-    srcdir="example",
     confoverrides={
         "extensions": ["sphinxawesome.codelinter"],
         "codelinter_languages": {"json": "python -m json.tool"},
@@ -101,7 +95,6 @@ def test_dummy_configured(app, status):
 
 @pytest.mark.sphinx(
     "codelinter",
-    srcdir="example",
     confoverrides={
         "extensions": ["sphinxawesome.codelinter"],
         "codelinter_languages": {"json": "does not exist"},
@@ -120,7 +113,6 @@ def test_codelinter_non_existing_tool(app, status, warning):
 
 @pytest.mark.sphinx(
     "codelinter",
-    srcdir="example",
     confoverrides={
         "extensions": ["sphinxawesome.codelinter"],
         "codelinter_languages": {"json": "python -m json.tool"},
@@ -147,7 +139,6 @@ def test_codelinter_json(app, status, warning):
 
 @pytest.mark.sphinx(
     "codelinter",
-    srcdir="example",
     confoverrides={
         "extensions": ["sphinxawesome.codelinter"],
         "codelinter_languages": {"yaml": "yamllint -"},
