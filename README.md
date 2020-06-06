@@ -1,11 +1,11 @@
 # Sphinx Awesome Codelinter
 
-![License](https://img.shields.io/github/license/kai687/sphinxawesome-codelinter?color=blue)
-[![PyPI version](https://img.shields.io/pypi/v/sphinxawesome-codelinter)](https://img.shields.io/pypi/v/sphinxawesome-codelinter)
-![PyTest Status](https://img.shields.io/github/workflow/status/kai687/sphinxawesome-codelinter/Run%20unit%20tests%20against%20different%20versions%20of%20Python?label=tests)
-![Codecov](https://img.shields.io/codecov/c/gh/kai687/sphinxawesome-codelinter)
-![Supported Python Versions](https://img.shields.io/pypi/pyversions/sphinxawesome-codelinter)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+![GitHub](https://img.shields.io/github/license/kai687/sphinxawesome-codelinter?color=blue&style=for-the-badge)
+![PyPI version](https://img.shields.io/pypi/v/sphinxawesome-codelinter?style=for-the-badge)
+![PyTest Status](https://img.shields.io/github/workflow/status/kai687/sphinxawesome-codelinter/Run%20unit%20tests%20against%20different%20versions%20of%20Python?label=tests&style=for-the-badge)
+![Codecov](https://img.shields.io/codecov/c/gh/kai687/sphinxawesome-codelinter?style=for-the-badge)
+![Supported Python Versions](https://img.shields.io/pypi/pyversions/sphinxawesome-codelinter?style=for-the-badge)
+![Code style](https://img.shields.io/badge/Code%20Style-Black-000000?style=for-the-badge)
 
 This extension for the Sphinx documentation generator allows you to expose code blocks
 in your documentation to an external tool. This can be used to check that code blocks
