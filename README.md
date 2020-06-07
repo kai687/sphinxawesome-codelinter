@@ -1,4 +1,4 @@
-# Sphinx Awesome Codelinter
+# Sphinx awesome codelinter
 
 ![GitHub](https://img.shields.io/github/license/kai687/sphinxawesome-codelinter?color=blue&style=for-the-badge)
 ![PyPI version](https://img.shields.io/pypi/v/sphinxawesome-codelinter?style=for-the-badge)
