@@ -1,22 +1,20 @@
-"""
-Lint code blocks.
+"""Lint code blocks.
 
-Use a subprocess.Pipe to pipe the code block into a pre-defined program.
+Use a ``subprocess.Pipe`` to pipe the code block into a pre-defined program.
 This is inherently unsafe, as arbitrary code could be passed to a shell
-for execution.
+for execution. But it's flexible and simple.
 
 The implementation mimicks ``cat codeblock | some_tool``.
 
-This was designed for linting YAML or JSON code blocks, but can be abused
-in all sort of ways.
+This was primarily designed (and tested) for linting YAML or JSON code blocks.
 
 :copyright: Copyright 2020, Kai Welke.
 :license: MIT, see LICENSE for details
 """
 
 from io import BytesIO
-from subprocess import PIPE, STDOUT, Popen
-from typing import Any, Dict, Optional, Set
+from subprocess import PIPE, Popen, STDOUT
+from typing import Any, Dict, Iterable, Optional, Set, Union
 
 from docutils import nodes
 from sphinx.application import Sphinx
@@ -32,37 +30,40 @@ __version__ = "1.0.4"
 
 
 class CodeLinter(Builder):
-    """
-    A Builder that iterates over all literal blocks and passes pipes them into
-    a tool for post-processing, for example linting.
+    """Iterate over all ``literal_block`` nodes.
+
+    pipe them into any command line tool that
+    can read from standard input.
     """
 
     name = "codelinter"
     epilog = __("Lint code blocks.")
     allow_parallel = True
 
-    def init(self) -> None:
+    def init(self: Any) -> None:
+        """Initialize."""
         pass
 
-    def get_outdated_docs(self) -> Set[str]:
+    def get_outdated_docs(self: Any) -> Union[str, Iterable[str]]:
+        """Check for outdated files.
+
+        Return an iterable of outdated output files, or a string describing what an
+        update will build.
+        """
         return self.env.found_docs
 
-    def get_target_uri(self, docname: str, typ: Optional[str] = None) -> str:
+    def get_target_uri(self: Any, docname: str, typ: Optional[str] = None) -> str:
+        """Return Target URI for a document name."""
         return ""
 
-    def prepare_writing(self, docnames: Set[str]) -> None:
+    def prepare_writing(self: Any, docnames: Set[str]) -> None:
+        """Steps to execute before documents are written."""
         return
 
-    def write_doc(self, docname: str, doctree: nodes.Node) -> None:
-        """
-        ``codelinter_languages`` is a dictionary with the language as key
-        and the command to run on the code block as value. This is specified
-        in ``conf.py``.
-
-        For example:
-            codelinter_languages = {'json': 'python3 -m json.tool'}
-            pipes any JSON code block to the JSON module of python.
-        """
+    def write_doc(self: Any, docname: str, doctree: nodes.Node) -> None:
+        """Execute the builder."""
+        # Read the dict ``codelinter_languages`` from ``conf.py``
+        # it has the language as key and the tool as value.
         code_lang = self.app.config.codelinter_languages
 
         for code in doctree.traverse(nodes.literal_block):
@@ -78,10 +79,10 @@ class CodeLinter(Builder):
                 logger.debug(code.astext())
                 try:
                     pipe = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
-                    out, err = pipe.communicate(input=io_obj.read())
+                    out, _ = pipe.communicate(input=io_obj.read())
                 except FileNotFoundError:
                     logger.error(
-                        f'command: "{code_lang[code["language"]]}" ' "does not exist!"
+                        "command: %s does not exist!", code_lang[code["language"]]
                     )
                     continue
 
@@ -92,12 +93,13 @@ class CodeLinter(Builder):
                 else:
                     logger.info(" " + darkgreen("OK"))
 
-    def finish(self) -> None:
+    def finish(self: Any) -> None:
+        """Finish the build process."""
         pass
 
 
 def setup(app: Sphinx) -> Dict[str, Any]:
-    """register this extension with Sphinx"""
+    """Register this extension with Sphinx."""
     app.add_builder(CodeLinter)
     app.add_config_value("codelinter_languages", {}, "env")
 

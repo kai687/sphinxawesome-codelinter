@@ -1,3 +1,9 @@
 [flake8]
-ignore = E501, W503
-exclude = __pycache__
+select = ANN,BLK,B,B89,C,D,E,F,I,S,W
+ignore = E501, W503, E203
+max-complexity = 10
+max-line-length = 88
+application-import-names = sphinxawesome.codelinter, tests
+import-order-style = google
+docstring-convention = google
+per-file-ignore=tests/*:S101,ANN

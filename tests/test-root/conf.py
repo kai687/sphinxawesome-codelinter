@@ -1,1 +1,1 @@
-# empty config to test the codelinter extension
+"""Empty Sphinx configuration file for testing."""
