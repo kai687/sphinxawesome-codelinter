@@ -88,12 +88,11 @@ def pytype(session: Session) -> None:
 @nox.session(python=["3.6", "3.7", "3.8"])
 def typeguard(session: Session) -> None:
     """Check types at runtime with typeguard."""
-    args = session.posargs
     # can I get this from importlib.meta too?
     package = "sphinxawesome.codelinter"
     session.run("poetry", "install", "--no-dev", external=True)
     install_constrained_version(session, "pytest", "typeguard")
-    session.run("pytest", f"--typeguard-packages={package}", *args)
+    session.run("pytest", f"--typeguard-packages={package}", *session.posargs)
 
 
 @nox.session(python="3.8")
@@ -110,3 +109,11 @@ def safety(session: Session) -> None:
         )
         install_constrained_version(session, "safety")
         session.run("safety", "check", f"--file={requirements.name}", "--full-report")
+
+
+@nox.session(python="3.8")
+def coverage(session: Session) -> None:
+    """Upload coverage report."""
+    install_constrained_version(session, "coverage[toml]", "codecov")
+    session.run("coverage", "xml", "--fail-under=0")
+    session.run("codecov", *session.posargs)
