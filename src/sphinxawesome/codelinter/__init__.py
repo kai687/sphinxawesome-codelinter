@@ -14,7 +14,7 @@ This was primarily designed (and tested) for linting YAML or JSON code blocks.
 
 try:
     from importlib.metadata import version, PackageNotFoundError  # type: ignore
-except ImportError:
+except ImportError:  # pragma: no cover
     from importlib_metadata import version, PackageNotFoundError  # type: ignore
 
 from io import BytesIO
@@ -36,7 +36,7 @@ try:
     # but the package is ``sphinxawesome-codelinter``,
     # however this module is ``sphinxawesome.codelinter``
     __version__ = version(__name__.replace(".", "-"))
-except PackageNotFoundError:
+except PackageNotFoundError:  # pragma: no cover
     __version__ = "unknown"
 
 
@@ -61,11 +61,11 @@ class CodeLinter(Builder):
         Return an iterable of outdated output files, or a string describing what an
         update will build.
         """
-        return self.env.found_docs
+        return self.env.found_docs  # pragma: no cover
 
     def get_target_uri(self: Any, docname: str, typ: Optional[str] = None) -> str:
         """Return Target URI for a document name."""
-        return ""
+        return ""  # pragma: no cover
 
     def prepare_writing(self: Any, docnames: Set[str]) -> None:
         """Steps to execute before documents are written."""
