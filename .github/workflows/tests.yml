@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         python-version: [3.6, 3.7, 3.8]
-        sphinx-version: ["2.4.*", "3.0.*"]
+        sphinx-version: ["2.*", "3.*"]
 
     name: Python ${{ matrix.python-version }}, Sphinx ${{ matrix.sphinx-version }}
 
