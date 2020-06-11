@@ -26,4 +26,4 @@ jobs:
           pip install yamllint==1.23.0
       - name: Run nox workflow
         run: |
-          nox -p ${{ matrix.python-version }} -k "not tests"
+          nox -p ${{ matrix.python-version }} -k "not (tests or coverage)"

@@ -27,4 +27,4 @@ jobs:
           pip install yamllint==1.23.0
       - name: Run unit tests with nox
         run: |
-          nox --session "test-${{ matrix.python-version }}(sphinx='${{matrix.sphinx-version}}')"
+          nox --sessions "tests-${{ matrix.python-version }}(sphinx='${{matrix.sphinx-version}}')"
