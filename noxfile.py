@@ -72,3 +72,14 @@ def pytype(session: Session) -> None:
     args = session.posargs or ["--disable=import-error", *locations]
     install_constrained_version(session, "pytype")
     session.run("pytype", *args)
+
+
+@nox.session(python=["3.6", "3.7", "3.8"])
+def typeguard(session: Session) -> None:
+    """Check types at runtime with typeguard."""
+    args = session.posargs
+    # can I get this from importlib.meta too?
+    package = "sphinxawesome.codelinter"
+    session.run("poetry", "install", "--no-dev", external=True)
+    install_constrained_version(session, "pytest", "typeguard")
+    session.run("pytest", f"--typeguard-packages={package}", *args)
