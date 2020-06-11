@@ -4,3 +4,4 @@ __pycache__
 .tox
 sphinxawesome_codelinter.egg-info
 .pytype
+dist

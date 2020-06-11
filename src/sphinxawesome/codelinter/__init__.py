@@ -12,8 +12,13 @@ This was primarily designed (and tested) for linting YAML or JSON code blocks.
 :license: MIT, see LICENSE for details
 """
 
+try:
+    from importlib.metadata import version, PackageNotFoundError  # type: ignore
+except ImportError:
+    from importlib_metadata import version, PackageNotFoundError  # type: ignore
+
 from io import BytesIO
-from subprocess import PIPE, Popen, STDOUT
+from subprocess import PIPE, Popen, STDOUT  # noqa: S404
 from typing import Any, Dict, Iterable, Optional, Set, Union
 
 from docutils import nodes
@@ -26,7 +31,13 @@ from sphinx.util.nodes import get_node_line
 
 logger = logging.getLogger(__name__)
 
-__version__ = "1.0.4"
+try:
+    # Get the version from the package.
+    # but the package is ``sphinxawesome-codelinter``,
+    # however this module is ``sphinxawesome.codelinter``
+    __version__ = version(__name__.replace(".", "-"))
+except PackageNotFoundError:
+    __version__ = "unknown"
 
 
 class CodeLinter(Builder):
@@ -78,7 +89,9 @@ class CodeLinter(Builder):
                 logger.debug(cmd)
                 logger.debug(code.astext())
                 try:
-                    pipe = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
+                    pipe = Popen(  # noqa: S603
+                        cmd, stdin=PIPE, stdout=PIPE, stderr=STDOUT
+                    )
                     out, _ = pipe.communicate(input=io_obj.read())
                 except FileNotFoundError:
                     logger.error(
