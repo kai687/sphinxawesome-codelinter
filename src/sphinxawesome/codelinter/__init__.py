@@ -15,15 +15,16 @@ in all sort of ways.
 """
 
 from io import BytesIO
-from subprocess import Popen, PIPE, STDOUT
-from typing import Dict, Any, Set, Optional
+from subprocess import PIPE, STDOUT, Popen
+from typing import Any, Dict, Optional, Set
+
 from docutils import nodes
+from sphinx.application import Sphinx
 from sphinx.builders import Builder
 from sphinx.locale import __
 from sphinx.util import logging
+from sphinx.util.console import darkgreen, red
 from sphinx.util.nodes import get_node_line
-from sphinx.util.console import red, darkgreen
-from sphinx.application import Sphinx
 
 logger = logging.getLogger(__name__)
 
