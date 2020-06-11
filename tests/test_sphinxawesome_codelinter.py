@@ -1,21 +1,22 @@
+"""Unit tests for the sphinxawesome.codelinter extension."""
+
+from io import StringIO
 import os
+from pathlib import Path
 
 import pytest
+from sphinx.application import Sphinx
+
 from sphinxawesome.codelinter import __version__
 
 
-def test_version():
-    """test that the version we expect is indeed here."""
-
+def test_returns_version() -> None:
+    """It has the correct version."""
     assert __version__ == "1.0.4"
 
 
-def test_rootdir_fixture(rootdir):
-    """
-    Test basic assumptions about test files/directories.
-    The test files are in './test-root'.
-    """
-
+def test_can_access_rootdir(rootdir: Path) -> None:
+    """It can access the test files."""
     conf_file = rootdir / "test-root" / "conf.py"
     index_file = rootdir / "test-root" / "index.rst"
     assert conf_file.exists()
@@ -23,13 +24,10 @@ def test_rootdir_fixture(rootdir):
 
 
 @pytest.mark.sphinx("dummy")
-def test_basic_config(app):
-    """
-    Test a basic compilation of a minimal configuration.
-    We use the `dummy` builder, so no output is expected.
-    """
-
+def test_dummy_compiles_minimal_configuration(app: Sphinx) -> None:
+    """It compiles a minimal configuration with the `dummy` builder."""
     app.builder.build_all()
+
     assert app.outdir.exists()
     assert not os.listdir(app.outdir)
 
@@ -37,12 +35,10 @@ def test_basic_config(app):
 @pytest.mark.sphinx(
     "dummy", confoverrides={"extensions": ["sphinxawesome.codelinter"]},
 )
-def test_extension_enabled(app):
-    """
-    Test enabling the extension without configuring it to run.
-    """
-
+def test_dummy_compiles_with_extension(app: Sphinx) -> None:
+    """It compiles with a minimal configuration with the extension added."""
     app.builder.build_all()
+
     assert app.outdir.exists()
     assert not os.listdir(app.outdir)
     assert "codelinter_languages" in app.config
@@ -51,12 +47,10 @@ def test_extension_enabled(app):
 @pytest.mark.sphinx(
     "codelinter", confoverrides={"extensions": ["sphinxawesome.codelinter"]},
 )
-def test_codelinter_empty(app, status):
-    """
-    Test the codelinter builder without any configuration.
-    """
-
+def test_codelinter_compiles_without_languages(app: Sphinx, status: StringIO) -> None:
+    """It builds with the codelinter builder without any languages."""
     app.builder.build_all()
+
     assert app.outdir.exists()
     assert not os.listdir(app.outdir)
     assert "codelinter_languages" in app.config
@@ -76,12 +70,12 @@ def test_codelinter_empty(app, status):
         "codelinter_languages": {"json": "python -m json.tool"},
     },
 )
-def test_dummy_configured(app, status):
-    """
-    Test normal builder with configured codelinter_languages dict.
-    """
-
+def test_dummy_compiles_with_codelinter_languages(
+    app: Sphinx, status: StringIO
+) -> None:
+    """It compiles with the dummy builder with configured codelinter_languages."""
     app.builder.build_all()
+
     assert app.outdir.exists()
     assert not os.listdir(app.outdir)
     assert "[Line 6] linting json" not in status.getvalue()
@@ -100,12 +94,12 @@ def test_dummy_configured(app, status):
         "codelinter_languages": {"json": "does not exist"},
     },
 )
-def test_codelinter_non_existing_tool(app, status, warning):
-    """
-    Test codelinter with non-existing linter.
-    """
-
+def test_codelinter_raises_warning_on_non_existing_tool(
+    app: Sphinx, status: StringIO, warning: StringIO
+) -> None:
+    """It raises a warning for a non-existing linter."""
     app.builder.build_all()
+
     assert app.outdir.exists()
     assert not os.listdir(app.outdir)
     assert "does not exist" in warning.getvalue()
@@ -118,11 +112,10 @@ def test_codelinter_non_existing_tool(app, status, warning):
         "codelinter_languages": {"json": "python -m json.tool"},
     },
 )
-def test_codelinter_json(app, status, warning):
-    """
-    Test codelinter builder for JSON code blocks.
-    """
-
+def test_codelinter_lints_json(
+    app: Sphinx, status: StringIO, warning: StringIO
+) -> None:
+    """It lints JSON code blocks."""
     app.builder.build_all()
 
     assert app.outdir.exists()
@@ -144,11 +137,10 @@ def test_codelinter_json(app, status, warning):
         "codelinter_languages": {"yaml": "yamllint -"},
     },
 )
-def test_codelinter_yaml(app, status, warning):
-    """
-    Test codelinter builder for YAML code blocks.
-    """
-
+def test_codelinter_lints_yaml(
+    app: Sphinx, status: StringIO, warning: StringIO
+) -> None:
+    """It lints YAML code blocks."""
     app.builder.build_all()
 
     assert app.outdir.exists()
@@ -171,11 +163,10 @@ def test_codelinter_yaml(app, status, warning):
         "codelinter_languages": {"yaml": "yamllint -", "json": "python -m json.tool"},
     },
 )
-def test_codelinter_both(app, status, warning):
-    """
-    Test codelinter builder for JSON and YAML code blocks.
-    """
-
+def test_codelinter_lints_json_and_yaml(
+    app: Sphinx, status: StringIO, warning: StringIO
+) -> None:
+    """It lints both JSON and YAML code blocks."""
     app.builder.build_all()
 
     assert app.outdir.exists()

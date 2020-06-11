@@ -15,28 +15,44 @@ classifiers = [
   'Topic :: Software Development :: Documentation'
 ]
 packages = [
-  { include = "sphinxawesome" }
+  { include = "sphinxawesome", from = "src" }
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
-sphinx = ">=2.2"
+python = ">=3.6.1,<4.0.0"
+sphinx = "^2.2 || ^3.0"
+importlib_metadata = {version = "^1.6.1", python = "<3.8"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.4"
 yamllint = "^1.20"
 pytest-cov = "^2.9"
 pre-commit = "^2.1.1"
+coverage = {extras = ["toml"], version = "^5.1"}
+flake8 = "^3.8.3"
+flake8-annotations = "^2.1.0"
+flake8-black = "^0.2.0"
+flake8-bandit = "^2.1.2"
+flake8-bugbear = "^20.1.4"
+flake8-docstrings = "^1.5.0"
+flake8-import-order = "^0.18.1"
+black = "^19.10b0"
+mypy = "^0.780"
+pytype = {version = "^2020.6.1", python = "3.6 || 3.7 || 3.8"}
+typeguard = "^2.9.1"
+safety = "^1.9.0"
 
-[tool.black]
-target-version = ['py36', 'py37', 'py38']
-exclude = '''
-/(
-  \.git
-| \.github
-)/
-'''
+[tool.coverage.paths]
+source = ["src"]
+
+[tool.coverage.run]
+branch = true
+source = ["sphinxawesome.codelinter"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 100
+
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
-
