@@ -1,9 +1,9 @@
 # Sphinx awesome codelinter
 
-![GitHub](https://img.shields.io/github/license/kai687/sphinxawesome-codelinter?color=blue&style=for-the-badge)
-![PyPI version](https://img.shields.io/pypi/v/sphinxawesome-codelinter?style=for-the-badge)
-![PyTest Status](https://img.shields.io/github/workflow/status/kai687/sphinxawesome-codelinter/Run%20unit%20tests%20against%20different%20versions%20of%20Python?label=tests&style=for-the-badge)
-![Codecov](https://img.shields.io/codecov/c/gh/kai687/sphinxawesome-codelinter?style=for-the-badge)
+[![License](https://img.shields.io/github/license/kai687/sphinxawesome-codelinter?color=blue&style=for-the-badge)](https://github.com/kai687/sphinxawesome-codelinter/blob/master/LICENSE)
+[![PyPI version](https://img.shields.io/pypi/v/sphinxawesome-codelinter?style=for-the-badge)](https://pypi.org/project/sphinxawesome-codelinter)
+[![PyTest Status](https://img.shields.io/github/workflow/status/kai687/sphinxawesome-codelinter/Run%20unit%20tests%20against%20different%20versions%20of%20Python?label=tests&style=for-the-badge)](https://github.com/kai687/sphinxawesome-codelinter/actions?query=workflow%3A%22Run+unit+tests%22)
+[![Codecov](https://img.shields.io/codecov/c/gh/kai687/sphinxawesome-codelinter?style=for-the-badge)](https://codecov.io/gh/kai687/sphinxawesome-codelinter)
 ![Supported Python Versions](https://img.shields.io/pypi/pyversions/sphinxawesome-codelinter?style=for-the-badge)
 ![Code style](https://img.shields.io/badge/Code%20Style-Black-000000?style=for-the-badge)
 
@@ -35,9 +35,9 @@ extensions = ["sphinxawesome.codelinter"]
 ```
 
 To pass code blocks to an external tool, provide the language as a key and the tool as
-the associated value to the `codelinter_languages` dictionary. This dictionary is initially
-empty, so even if the extension is installed and included in the `extensions` list,
-no code blocks will be processed by default.
+the associated value to the `codelinter_languages` dictionary. This dictionary is
+initially empty, so even if the extension is installed and included in the `extensions`
+list, no code blocks will be processed by default.
 
 For example, to pass all JSON blocks to the python builtin JSON module, use:
 
@@ -47,8 +47,8 @@ codelinter_languages = {
 }
 ```
 
-The python command returns an error for non-valid JSON code. For linting YAML code blocks, you could
-install the `yamllint` tool and then add:
+The python command returns an error for non-valid JSON code. For linting YAML code
+blocks, you could install the `yamllint` tool and then add:
 
 ```python
 codelinter_languages = {
@@ -72,11 +72,11 @@ files.
 ```
 
 > **Caution:** The value of the `codelinter_languages` dictionary will be called as
-provided. No additional safe-guards are in place to prevent abuse.
+> provided. No additional safe-guards are in place to prevent abuse.
 
 ## Use
 
-Use `sphinx-build -b codelinter` like you would use other Sphinx builders. No output 
-will be written to disk. If the codelinter tool exits with a non-zero return value, 
-a warning will be logged. You can use the `sphinx-build -W` option to turn those 
-warnings into errors to stop the build process.
+Use `sphinx-build -b codelinter` like you would use other Sphinx builders. No output
+will be written to disk. If the codelinter tool exits with a non-zero return value, a
+warning will be logged. You can use the `sphinx-build -W` option to turn those warnings
+into errors to stop the build process.
