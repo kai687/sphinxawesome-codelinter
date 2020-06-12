@@ -2,8 +2,9 @@
 name: Publish a new version on PyPI
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - "*.*.*"
 
 jobs:
   release:
