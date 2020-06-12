@@ -15,7 +15,7 @@ jobs:
           python-version: "3.8"
       - name: Install dependencies
         run: |
-          pip install --constraint=.github/workflow/constraints.txt poetry nox yamllint
+          pip install --constraint=.github/workflows/constraints.txt poetry nox yamllint
       - name: Run nox workflow
         run: nox --sessions "tests-3.8(sphinx='3.*')" coverage
         env:
