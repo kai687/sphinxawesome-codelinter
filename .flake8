@@ -6,4 +6,4 @@ max-line-length = 88
 application-import-names = sphinxawesome.codelinter, tests
 import-order-style = google
 docstring-convention = google
-per-file-ignore=tests/*:S101,ANN
+per-file-ignore = tests/*:S101,ANN

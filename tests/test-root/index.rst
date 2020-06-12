@@ -24,7 +24,7 @@ Just a normal paragraph.
      - three
 
 .. code-block:: yaml
-   
+
    ---
    invalid-yaml:
    - one

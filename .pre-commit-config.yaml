@@ -21,6 +21,6 @@ repos:
         types: [python]
       - id: flake8
         name: flake8
-        entry: poetry run flake8
+        entry: poetry run flake8 --per-file-ignores=tests/*:S101
         language: system
         types: [python]
