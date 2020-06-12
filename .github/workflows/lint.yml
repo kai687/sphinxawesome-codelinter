@@ -21,9 +21,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
-          pip install nox==2020.5.24
-          pip install poetry==1.0.9
-          pip install yamllint==1.23.0
+          pip install --constraint=.github/workflows/constraints.txt poetry nox yamllint
       - name: Run nox workflow
         run: |
           nox -p ${{ matrix.python-version }} -k "not (tests or coverage)"
