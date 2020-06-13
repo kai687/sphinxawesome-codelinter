@@ -51,11 +51,11 @@ class CodeLinter(Builder):
     epilog = __("Lint code blocks.")
     allow_parallel = True
 
-    def init(self: Any) -> None:
+    def init(self) -> None:
         """Initialize."""
         pass
 
-    def get_outdated_docs(self: Any) -> Union[str, Iterable[str]]:
+    def get_outdated_docs(self) -> Union[str, Iterable[str]]:
         """Check for outdated files.
 
         Return an iterable of outdated output files, or a string describing what an
@@ -63,15 +63,15 @@ class CodeLinter(Builder):
         """
         return self.env.found_docs  # pragma: no cover
 
-    def get_target_uri(self: Any, docname: str, typ: Optional[str] = None) -> str:
+    def get_target_uri(self, docname: str, typ: Optional[str] = None) -> str:
         """Return Target URI for a document name."""
         return ""  # pragma: no cover
 
-    def prepare_writing(self: Any, docnames: Set[str]) -> None:
+    def prepare_writing(self, docnames: Set[str]) -> None:
         """Steps to execute before documents are written."""
         return
 
-    def write_doc(self: Any, docname: str, doctree: nodes.Node) -> None:
+    def write_doc(self, docname: str, doctree: nodes.Node) -> None:
         """Execute the builder."""
         # Read the dict ``codelinter_languages`` from ``conf.py``
         # it has the language as key and the tool as value.
@@ -106,7 +106,7 @@ class CodeLinter(Builder):
                 else:
                     logger.info(" " + darkgreen("OK"))
 
-    def finish(self: Any) -> None:
+    def finish(self) -> None:
         """Finish the build process."""
         pass
 
