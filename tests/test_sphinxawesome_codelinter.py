@@ -33,7 +33,8 @@ def test_dummy_compiles_minimal_configuration(app: Sphinx) -> None:
 
 
 @pytest.mark.sphinx(
-    "dummy", confoverrides={"extensions": ["sphinxawesome.codelinter"]},
+    "dummy",
+    confoverrides={"extensions": ["sphinxawesome.codelinter"]},
 )
 def test_dummy_compiles_with_extension(app: Sphinx) -> None:
     """It compiles with a minimal configuration with the extension added."""
@@ -45,7 +46,8 @@ def test_dummy_compiles_with_extension(app: Sphinx) -> None:
 
 
 @pytest.mark.sphinx(
-    "codelinter", confoverrides={"extensions": ["sphinxawesome.codelinter"]},
+    "codelinter",
+    confoverrides={"extensions": ["sphinxawesome.codelinter"]},
 )
 def test_codelinter_compiles_without_languages(app: Sphinx, status: StringIO) -> None:
     """It builds with the codelinter builder without any languages."""
