@@ -25,7 +25,7 @@ importlib_metadata = {version = "^1.6.1", python = "<3.8"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.1"
-yamllint = "^1.24"
+yamllint = "^1.25"
 pytest-cov = "^2.10"
 pre-commit = "^2.7.1"
 coverage = {extras = ["toml"], version = "^5.3"}
