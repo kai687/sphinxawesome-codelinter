@@ -8,6 +8,7 @@ from nox.sessions import Session
 
 nox.options.sessions = ["tests", "lint", "mypy", "pytype", "safety"]
 locations = ["src", "tests", "noxfile.py"]
+python_versions = ["3.6", "3.7", "3.8", "3.9"]
 
 
 def install_constrained_version(session: Session, *args: str, **kwargs: Any) -> None:
@@ -25,7 +26,7 @@ def install_constrained_version(session: Session, *args: str, **kwargs: Any) -> 
         session.install(f"--constraint={requirements.name}", *args, **kwargs)
 
 
-@nox.session(python=["3.6", "3.7", "3.8"])
+@nox.session(python=python_versions)
 @nox.parametrize("sphinx", ["2.*", "3.*"])
 def tests(session: Session, sphinx: str) -> None:
     """Run unit tests."""
@@ -45,7 +46,7 @@ def tests(session: Session, sphinx: str) -> None:
     )
 
 
-@nox.session(python=["3.6", "3.7", "3.8"])
+@nox.session(python=python_versions)
 def lint(session: Session) -> None:
     """Lint with Flake8."""
     args = session.posargs or locations
@@ -70,7 +71,7 @@ def black(session: Session) -> None:
     session.run("black", *args)
 
 
-@nox.session(python=["3.6", "3.7", "3.8"])
+@nox.session(python=python_versions)
 def mypy(session: Session) -> None:
     """Check types with Mypy."""
     args = session.posargs or locations
@@ -86,7 +87,7 @@ def pytype(session: Session) -> None:
     session.run("pytype", *args)
 
 
-@nox.session(python=["3.6", "3.7", "3.8"])
+@nox.session(python=python_versions)
 def typeguard(session: Session) -> None:
     """Check types at runtime with typeguard."""
     # can I get this from importlib.meta too?
