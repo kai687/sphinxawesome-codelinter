@@ -647,7 +647,7 @@ testing = ["fields", "hunter", "process-tests (==2.0.2)", "six", "pytest-xdist",
 
 [[package]]
 name = "pytype"
-version = "2020.11.3"
+version = "2020.11.12"
 description = "Python type inferencer"
 category = "dev"
 optional = false
@@ -951,7 +951,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.6.1,<4.0.0"
-content-hash = "d1b76522469bf573984e672b44475e6a162549de22e0149728bfd66cf8e5ed6d"
+content-hash = "c00b407c1f1f830e75525a11b67ba7b240cd157fb38b14529a5b22a594e70e45"
 
 [metadata.files]
 alabaster = [
@@ -1267,13 +1267,13 @@ pytest-cov = [
     {file = "pytest_cov-2.10.1-py2.py3-none-any.whl", hash = "sha256:45ec2d5182f89a81fc3eb29e3d1ed3113b9e9a873bcddb2a71faaab066110191"},
 ]
 pytype = [
-    {file = "pytype-2020.11.3-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:6353e37f0df5037a1f18d0692b9b0b2d71ed0bb1e3b1d6d8d29458ef1a18cb81"},
-    {file = "pytype-2020.11.3-cp36-cp36m-manylinux2014_x86_64.whl", hash = "sha256:926dea04b6fc9e396b69281679dbbe982f3825d8a3590ba63e671460d58ff192"},
-    {file = "pytype-2020.11.3-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:1b63bfccdd68a8f8a80358fccf09c2a52b2e8d0e079e7ae9c034ba5df4356418"},
-    {file = "pytype-2020.11.3-cp37-cp37m-manylinux2014_x86_64.whl", hash = "sha256:e2ea11478665f7496f2e6f9b38956a01e47ab18462961ae5acfeb99c937dcef0"},
-    {file = "pytype-2020.11.3-cp38-cp38-macosx_10_14_x86_64.whl", hash = "sha256:409ff5f52e767ec957014d1c5c1abf2e246446896d333c25f8f2a19de150f85e"},
-    {file = "pytype-2020.11.3-cp38-cp38-manylinux2014_x86_64.whl", hash = "sha256:e97ff9dea170897e35fd1bf5934863176c7d97fbf533d2020ff0ab751dc2e389"},
-    {file = "pytype-2020.11.3.tar.gz", hash = "sha256:01c2dc3664b550e5c571c432035eda85c5b1ba0bc2675f50bd24f226fda25fc2"},
+    {file = "pytype-2020.11.12-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:ea77133d694584caadd7d5e1769797b3a65f5759a18a1ccac6770bed37221b83"},
+    {file = "pytype-2020.11.12-cp36-cp36m-manylinux2014_x86_64.whl", hash = "sha256:a711a477e45a13737623a89c87cb43d8edca35c3e27dfb0a511bbd1a6e76da30"},
+    {file = "pytype-2020.11.12-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:79933e2229e9b8f8f0de6ab2625a33ed38dd6d74598e49ab74f178fe7c53e0de"},
+    {file = "pytype-2020.11.12-cp37-cp37m-manylinux2014_x86_64.whl", hash = "sha256:10acd00450af59abd13b4dee7f1d6ba275f7e4b969e339e4ee611c886c1b9fed"},
+    {file = "pytype-2020.11.12-cp38-cp38-macosx_10_14_x86_64.whl", hash = "sha256:0b3f38d1a4e10db09227905c4d8dfecd4d0923d8dc423c9ba6d95ea30f156964"},
+    {file = "pytype-2020.11.12-cp38-cp38-manylinux2014_x86_64.whl", hash = "sha256:3d1c2b684232e6e9e9a5f5e62080cc12f2fbd87a693a16eb67ad2c95d8671a05"},
+    {file = "pytype-2020.11.12.tar.gz", hash = "sha256:66f694abee3eea5a1c7f8ca040324f8b13b1ed01e308ba898bf36775b0a4c944"},
 ]
 pytz = [
     {file = "pytz-2020.4-py2.py3-none-any.whl", hash = "sha256:5c55e189b682d420be27c6995ba6edce0c0a77dd67bfbe2ae6607134d5851ffd"},
