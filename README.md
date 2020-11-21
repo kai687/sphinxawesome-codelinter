@@ -61,7 +61,7 @@ read from `stdin` and write to `stdout` or `stderr`. The only expectation is tha
 tools returns a value of 0 if no errors were found, a non-zero value otherwise.
 
 You can use any reStructuredText directive that gets parsed as a `literal_block` node.
-For example, you can use `.. code-block:: json` as well as `.. highlight:: json`.
+For example, you can use `.. code-block:: json` or `.. code:: json`.
 
 You can also use the `..literalinclude:: <filename>` directive to include code from
 files.
