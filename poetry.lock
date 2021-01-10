@@ -717,7 +717,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 
 [[package]]
 name = "safety"
-version = "1.10.0"
+version = "1.10.1"
 description = "Checks installed dependencies for known vulnerabilities."
 category = "dev"
 optional = false
@@ -963,7 +963,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.6.1,<4.0.0"
-content-hash = "74b0c8198f427d526229d5a0bb87ffe8c5c85f03678c9a96df21e8a660b75c48"
+content-hash = "96fe0042da78b04b52c91c1777ed7cd6a850d7258c16436fce550ab87b2c15cb"
 
 [metadata.files]
 alabaster = [
@@ -1375,8 +1375,8 @@ requests = [
     {file = "requests-2.24.0.tar.gz", hash = "sha256:b3559a131db72c33ee969480840fff4bb6dd111de7dd27c8ee1f820f4f00231b"},
 ]
 safety = [
-    {file = "safety-1.10.0-py2.py3-none-any.whl", hash = "sha256:69437acf5dd617abd7086ccd0d50e813e67aa969bb9ca90f1847d5fbea047dcc"},
-    {file = "safety-1.10.0.tar.gz", hash = "sha256:2ebc71b44666588d7898905d86d575933fcd5fa3c92d301ed12482602b1e928a"},
+    {file = "safety-1.10.1-py2.py3-none-any.whl", hash = "sha256:6e86b4bd47ea6e8f623045bd3687342fb5ac402fb37147fca82fd5a752ec3afc"},
+    {file = "safety-1.10.1.tar.gz", hash = "sha256:f2ab09596ebcbb4012fb7345d2dbda28319c8f3c2731ef6e27ba206b279c13b2"},
 ]
 six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
