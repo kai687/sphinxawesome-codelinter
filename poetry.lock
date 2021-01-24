@@ -359,15 +359,14 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
 name = "importlab"
-version = "0.5.1"
+version = "0.6.1"
 description = "A library to calculate python dependency graphs."
 category = "dev"
 optional = false
-python-versions = ">=2.7.0"
+python-versions = ">=3.6.0"
 
 [package.dependencies]
-networkx = "*"
-six = "*"
+networkx = ">=2"
 
 [[package]]
 name = "importlib-metadata"
@@ -659,7 +658,7 @@ testing = ["fields", "hunter", "process-tests (==2.0.2)", "six", "pytest-xdist",
 
 [[package]]
 name = "pytype"
-version = "2021.1.14"
+version = "2021.1.21"
 description = "Python type inferencer"
 category = "dev"
 optional = false
@@ -667,7 +666,8 @@ python-versions = "<3.9,>=3.6"
 
 [package.dependencies]
 attrs = "*"
-importlab = ">=0.5.1"
+dataclasses = {version = "*", markers = "python_version < \"3.7\""}
+importlab = ">=0.6.1"
 ninja = ">=1.10.0.post2"
 pyyaml = ">=3.11"
 six = "*"
@@ -963,7 +963,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.6.1,<4.0.0"
-content-hash = "4ab4844ab791ef222aa92502b984e218966e345fbb0614531986eeec52cda006"
+content-hash = "754c03199af0b6bf317b65245929b3e4df9dd86460dc92790340fcfb35198a29"
 
 [metadata.files]
 alabaster = [
@@ -1143,7 +1143,7 @@ imagesize = [
     {file = "imagesize-1.2.0.tar.gz", hash = "sha256:b1f6b5a4eab1f73479a50fb79fcf729514a900c341d8503d62a62dbc4127a2b1"},
 ]
 importlab = [
-    {file = "importlab-0.5.1.tar.gz", hash = "sha256:d855350d19dc10a17aabd2fe6f4b428ff1a936071f692fbf686a73694d26a51c"},
+    {file = "importlab-0.6.1.tar.gz", hash = "sha256:056503329df1ba8f6291a4b548042aa18620ad91d39388ba58044f0fd44ff83e"},
 ]
 importlib-metadata = [
     {file = "importlib_metadata-3.4.0-py3-none-any.whl", hash = "sha256:ace61d5fc652dc280e7b6b4ff732a9c2d40db2c0f92bc6cb74e07b73d53a1771"},
@@ -1298,13 +1298,13 @@ pytest-cov = [
     {file = "pytest_cov-2.10.1-py2.py3-none-any.whl", hash = "sha256:45ec2d5182f89a81fc3eb29e3d1ed3113b9e9a873bcddb2a71faaab066110191"},
 ]
 pytype = [
-    {file = "pytype-2021.1.14-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:e11dc7779fb519dd532b164ab31e1fa272bb27cd46d38243eeee7353a31d455c"},
-    {file = "pytype-2021.1.14-cp36-cp36m-manylinux2014_x86_64.whl", hash = "sha256:25fa82e74934fbbb26dd1dd5d92d24358c0008d7721dcaf17e1c7352e831daca"},
-    {file = "pytype-2021.1.14-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:9fa92038c44738046249a3a0a5079d3225e6936f7845be30f02b634d75c9ad72"},
-    {file = "pytype-2021.1.14-cp37-cp37m-manylinux2014_x86_64.whl", hash = "sha256:895bacb61442c6309292f8b6bbefad123103300c0b4da0f6704de7e8b45df9d8"},
-    {file = "pytype-2021.1.14-cp38-cp38-macosx_10_14_x86_64.whl", hash = "sha256:763bc21bcee6089cb1d1dc871277bb4e214e3676d83f6ca785700510891cae49"},
-    {file = "pytype-2021.1.14-cp38-cp38-manylinux2014_x86_64.whl", hash = "sha256:27e7f0a14bae35fb16b32e239102979a5ed5c6dc060eb8c8408609a74b75912c"},
-    {file = "pytype-2021.1.14.tar.gz", hash = "sha256:d7778f2b88de807294a24df6f9e3dfee707820d6144641dba3e8d1d588a44d8d"},
+    {file = "pytype-2021.1.21-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:3b08095a2be52a89dfcf7e71608abf1212e6ad7765461dfae0e35adc9037315b"},
+    {file = "pytype-2021.1.21-cp36-cp36m-manylinux2014_x86_64.whl", hash = "sha256:4da83ae821081a4043e9a1ffb2e4e238248622dbc9119eea3f9af3bc5b74fafd"},
+    {file = "pytype-2021.1.21-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:b7f44e6e92727402540f360095daff40754d51a9c0ebcaea7c1830c25f9757bc"},
+    {file = "pytype-2021.1.21-cp37-cp37m-manylinux2014_x86_64.whl", hash = "sha256:7bf6bbe0f3147df64b11b980d070e5045c725946703999de07e077f11e8458c7"},
+    {file = "pytype-2021.1.21-cp38-cp38-macosx_10_14_x86_64.whl", hash = "sha256:80c3bd1a55c9fab1d5c41ef20c8e6994844c413b5c24d0327990cf2767e1d18a"},
+    {file = "pytype-2021.1.21-cp38-cp38-manylinux2014_x86_64.whl", hash = "sha256:06a9d47e8bbbaa6acc15f3be2cd349c6c1fb76e8599b3fd3e01e7058a7667db0"},
+    {file = "pytype-2021.1.21.tar.gz", hash = "sha256:b79c7c0c9a9df767887bc50c96c1391c9ff3ceacf2a5f3b49ecf57b1d3d86a64"},
 ]
 pytz = [
     {file = "pytz-2020.5-py2.py3-none-any.whl", hash = "sha256:16962c5fb8db4a8f63a26646d8886e9d769b6c511543557bc84e9569fb9a9cb4"},
