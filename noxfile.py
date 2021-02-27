@@ -34,16 +34,8 @@ def tests(session: Session, sphinx: str) -> None:
     session.run("poetry", "install", "--no-dev", external=True)
     install_constrained_version(session, "coverage[toml]", "pytest", "pytest-cov")
     # override the default Sphinx version (which will be 3.x)
-    session.run("poetry", "run", "pip", "install", f"sphinx=={sphinx}", external=True)
+    session.install(f"sphinx=={sphinx}")
     session.run("pytest", *args)
-    session.run(
-        "poetry",
-        "run",
-        "python3",
-        "-c",
-        "import sphinx; print(sphinx.__version__)",
-        external=True,
-    )
 
 
 @nox.session(python=python_versions)
