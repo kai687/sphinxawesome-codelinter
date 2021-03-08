@@ -7,12 +7,8 @@
 ![Supported Python Versions](https://img.shields.io/pypi/pyversions/sphinxawesome-codelinter?style=for-the-badge)
 ![Code style](https://img.shields.io/badge/Code%20Style-Black-000000?style=for-the-badge)
 
-This extension for the Sphinx documentation generator allows you to expose code blocks
-in your documentation to an external tool. This can be used to check that code blocks
-contain only valid code. For more information about the Sphinx project, visit the
-website at http://www.sphinx-doc.org/.
-
-This extension provides a new builder: `sphinx-build -b codelinter`.
+This extension for the [Sphinx documentation generator](https://www.sphinx-doc.org) exposes code blocks in your documentation to an external tool.
+This can be used to check that code blocks are valid or follow a certain style.
 
 ## Installation
 
@@ -22,8 +18,7 @@ Install the extension:
 pip install sphinxawesome-codelinter
 ```
 
-This Sphinx extension should work with Python versions newer than 3.6 and recent Sphinx
-releases.
+This Sphinx extension works with Python versions newer than 3.6 and recent Sphinx releases.
 
 ## Configuration
 
@@ -39,7 +34,7 @@ the associated value to the `codelinter_languages` dictionary. This dictionary i
 initially empty, so even if the extension is installed and included in the `extensions`
 list, no code blocks will be processed by default.
 
-For example, to pass all JSON blocks to the python builtin JSON module, use:
+For example, to pass all JSON blocks to Python's built-in JSON module, use:
 
 ```python
 codelinter_languages = {
@@ -47,8 +42,8 @@ codelinter_languages = {
 }
 ```
 
-The python command returns an error for non-valid JSON code. For linting YAML code
-blocks, you could install the `yamllint` tool and then add:
+The Python command `python -m json.tool` returns an error for non-valid JSON code.
+For linting YAML code blocks, you could install the `yamllint` tool and add:
 
 ```python
 codelinter_languages = {
@@ -61,7 +56,7 @@ read from `stdin` and write to `stdout` or `stderr`. The only expectation is tha
 tools returns a value of 0 if no errors were found, a non-zero value otherwise.
 
 You can use any reStructuredText directive that gets parsed as a `literal_block` node.
-For example, you can use `.. code-block:: json` or `.. code:: json`.
+For example, you can use `.. code-block:: json` or `.. code:: json` directives.
 
 You can also use the `..literalinclude:: <filename>` directive to include code from
 files.
@@ -76,7 +71,7 @@ files.
 
 ## Use
 
-Use `sphinx-build -b codelinter` like you would use other Sphinx builders. No output
-will be written to disk. If the codelinter tool exits with a non-zero return value, a
-warning will be logged. You can use the `sphinx-build -W` option to turn those warnings
-into errors to stop the build process.
+The extension exposes a builder in Sphinx. Use `sphinx-build -b codelinter` to run it.
+No output is written to disk.
+If the codelinter tool exits with a non-zero return value, it logs a warning.
+You can use the `sphinx-build -W` option to turn warnings into errors and stop the build process.
