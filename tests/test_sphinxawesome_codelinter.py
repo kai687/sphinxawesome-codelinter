@@ -1,7 +1,7 @@
 """Unit tests for the sphinxawesome.codelinter extension."""
 
-from io import StringIO
 import os
+from io import StringIO
 from pathlib import Path
 
 import pytest

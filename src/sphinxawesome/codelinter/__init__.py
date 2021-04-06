@@ -13,12 +13,12 @@ This was primarily designed (and tested) for linting YAML or JSON code blocks.
 """
 
 try:
-    from importlib.metadata import version, PackageNotFoundError  # type: ignore
+    from importlib.metadata import PackageNotFoundError, version  # type: ignore
 except ImportError:  # pragma: no cover
     from importlib_metadata import version, PackageNotFoundError  # type: ignore
 
 from io import BytesIO
-from subprocess import PIPE, Popen, STDOUT  # noqa: S404
+from subprocess import PIPE, STDOUT, Popen  # noqa: S404
 from typing import Any, Dict, Iterable, Optional, Set, Union
 
 from docutils import nodes

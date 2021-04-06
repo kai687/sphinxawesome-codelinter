@@ -50,18 +50,25 @@ def lint(session: Session) -> None:
         "flake8-black",
         "flake8-bugbear",
         "flake8-docstrings",
-        "flake8-import-order",
         "flake8-implicit-str-concat",
     )
     session.run("flake8", *args)
 
 
-@nox.session(python="3.8")
+@nox.session(python=python_versions[-1])
 def black(session: Session) -> None:
     """Format code with Black."""
     args = session.posargs or locations
     install_constrained_version(session, "black")
     session.run("black", *args)
+
+
+@nox.session(python=python_versions[-1])
+def isort(session: Session) -> None:
+    """Order imports with isort."""
+    args = session.posargs or locations
+    install_constrained_version(session, "isort")
+    session.run("isort", *args)
 
 
 @nox.session(python=python_versions)
