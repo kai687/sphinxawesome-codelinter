@@ -5,3 +5,4 @@ __pycache__
 sphinxawesome_codelinter.egg-info
 .pytype
 dist
+.python-version

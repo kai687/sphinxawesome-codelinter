@@ -27,13 +27,15 @@ def install_constrained_version(session: Session, *args: str, **kwargs: Any) -> 
 
 
 @nox.session(python=python_versions)
-@nox.parametrize("sphinx", ["2.*", "3.*"])
+@nox.parametrize("sphinx", ["2.*", "3.*", "4.*"])
 def tests(session: Session, sphinx: str) -> None:
     """Run unit tests."""
     args = session.posargs or ["--cov"]
     session.run("poetry", "install", "--no-dev", external=True)
-    install_constrained_version(session, "coverage[toml]", "pytest", "pytest-cov")
-    # override the default Sphinx version (which will be 3.x)
+    install_constrained_version(
+        session, "coverage[toml]", "pytest", "pytest-cov", "yamllint"
+    )
+    # override the default Sphinx version (which will be 4.x)
     session.install(f"sphinx=={sphinx}")
     session.run("pytest", *args)
 
@@ -93,7 +95,7 @@ def typeguard(session: Session) -> None:
     # can I get this from importlib.meta too?
     package = "sphinxawesome.codelinter"
     session.run("poetry", "install", "--no-dev", external=True)
-    install_constrained_version(session, "pytest", "typeguard")
+    install_constrained_version(session, "pytest", "typeguard", "yamllint")
     session.run("pytest", f"--typeguard-packages={package}", *session.posargs)
 
 
