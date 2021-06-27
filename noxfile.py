@@ -6,7 +6,7 @@ from typing import Any
 import nox
 from nox.sessions import Session
 
-nox.options.sessions = ["tests", "lint", "mypy", "pytype", "safety"]
+nox.options.sessions = ["tests", "lint", "mypy", "safety"]
 locations = ["src", "tests", "noxfile.py"]
 python_versions = ["3.6", "3.7", "3.8", "3.9"]
 
@@ -77,16 +77,8 @@ def isort(session: Session) -> None:
 def mypy(session: Session) -> None:
     """Check types with Mypy."""
     args = session.posargs or locations
-    install_constrained_version(session, "mypy")
+    install_constrained_version(session, "mypy", "types-docutils")
     session.run("mypy", *args)
-
-
-@nox.session(python=["3.6", "3.7", "3.8"])
-def pytype(session: Session) -> None:
-    """Check types with Pytype."""
-    args = session.posargs or ["--disable=import-error", *locations]
-    install_constrained_version(session, "pytype")
-    session.run("pytype", *args)
 
 
 @nox.session(python=python_versions)
