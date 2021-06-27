@@ -77,8 +77,10 @@ def isort(session: Session) -> None:
 def mypy(session: Session) -> None:
     """Check types with Mypy."""
     args = session.posargs or locations
-    install_constrained_version(session, "mypy", "types-docutils")
-    session.run("mypy", *args)
+    install_constrained_version(
+        session, "mypy", "types-docutils", "nox", "pytest", "sphinx"
+    )
+    session.run("mypy", "--strict", *args)
 
 
 @nox.session(python=python_versions)

@@ -13,7 +13,7 @@ This was primarily designed (and tested) for linting YAML or JSON code blocks.
 """
 
 try:
-    from importlib.metadata import PackageNotFoundError, version  # type: ignore
+    from importlib.metadata import PackageNotFoundError, version
 except ImportError:  # pragma: no cover
     from importlib_metadata import version, PackageNotFoundError  # type: ignore
 
@@ -26,7 +26,7 @@ from sphinx.application import Sphinx
 from sphinx.builders import Builder
 from sphinx.locale import __
 from sphinx.util import logging
-from sphinx.util.console import darkgreen, red
+from sphinx.util.console import darkgreen, red  # type: ignore
 from sphinx.util.nodes import get_node_line
 
 logger = logging.getLogger(__name__)

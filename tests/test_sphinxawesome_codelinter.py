@@ -28,7 +28,7 @@ def test_dummy_compiles_minimal_configuration(app: Sphinx) -> None:
     """It compiles a minimal configuration with the `dummy` builder."""
     app.builder.build_all()
 
-    assert app.outdir.exists()
+    assert os.path.exists(app.outdir)
     assert not os.listdir(app.outdir)
 
 
@@ -40,7 +40,7 @@ def test_dummy_compiles_with_extension(app: Sphinx) -> None:
     """It compiles with a minimal configuration with the extension added."""
     app.builder.build_all()
 
-    assert app.outdir.exists()
+    assert os.path.exists(app.outdir)
     assert not os.listdir(app.outdir)
     assert "codelinter_languages" in app.config
 
@@ -53,7 +53,7 @@ def test_codelinter_compiles_without_languages(app: Sphinx, status: StringIO) ->
     """It builds with the codelinter builder without any languages."""
     app.builder.build_all()
 
-    assert app.outdir.exists()
+    assert os.path.exists(app.outdir)
     assert not os.listdir(app.outdir)
     assert "codelinter_languages" in app.config
     assert "[Line 6] linting json" not in status.getvalue()
@@ -78,7 +78,7 @@ def test_dummy_compiles_with_codelinter_languages(
     """It compiles with the dummy builder with configured codelinter_languages."""
     app.builder.build_all()
 
-    assert app.outdir.exists()
+    assert os.path.exists(app.outdir)
     assert not os.listdir(app.outdir)
     assert "[Line 6] linting json" not in status.getvalue()
     assert "[Line 10] linting" not in status.getvalue()
@@ -102,7 +102,7 @@ def test_codelinter_raises_warning_on_non_existing_tool(
     """It raises a warning for a non-existing linter."""
     app.builder.build_all()
 
-    assert app.outdir.exists()
+    assert os.path.exists(app.outdir)
     assert not os.listdir(app.outdir)
     assert "does not exist" in warning.getvalue()
 
@@ -120,7 +120,7 @@ def test_codelinter_lints_json(
     """It lints JSON code blocks."""
     app.builder.build_all()
 
-    assert app.outdir.exists()
+    assert os.path.exists(app.outdir)
     assert not os.listdir(app.outdir)
     assert "[Line 6] linting json" in status.getvalue()
     assert "[Line 10] linting" not in status.getvalue()
@@ -145,7 +145,7 @@ def test_codelinter_lints_yaml(
     """It lints YAML code blocks."""
     app.builder.build_all()
 
-    assert app.outdir.exists()
+    assert os.path.exists(app.outdir)
     assert not os.listdir(app.outdir)
     assert "[Line 6] linting json" not in status.getvalue()
     assert "[Line 10] linting" not in status.getvalue()
@@ -171,7 +171,7 @@ def test_codelinter_lints_json_and_yaml(
     """It lints both JSON and YAML code blocks."""
     app.builder.build_all()
 
-    assert app.outdir.exists()
+    assert os.path.exists(app.outdir)
     assert not os.listdir(app.outdir)
     assert "[Line 6] linting json" in status.getvalue()
     assert "[Line 10] linting" not in status.getvalue()

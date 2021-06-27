@@ -1,7 +1,5 @@
 """Common configurations and fixtures for Pytest."""
 
-from pathlib import Path
-
 import pytest
 from _pytest.config import Config
 from sphinx.testing.path import path
@@ -10,7 +8,7 @@ pytest_plugins = "sphinx.testing.fixtures"
 
 
 @pytest.fixture(scope="session")
-def rootdir() -> Path:
+def rootdir() -> path:
     """Root directory for test files."""
     return path(__file__).parent.abspath()
 
