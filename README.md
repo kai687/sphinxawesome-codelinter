@@ -1,13 +1,14 @@
 # Sphinx awesome codelinter
 
 [![License](https://img.shields.io/github/license/kai687/sphinxawesome-codelinter?color=blue&style=for-the-badge)](https://github.com/kai687/sphinxawesome-codelinter/blob/master/LICENSE)
+[![PyPI version](https://img.shields.io/pypi/v/sphinxawesome-codelinter?style=for-the-badge)](https://pypi.org/project/sphinxawesome-codelinter)
 [![PyTest Status](https://img.shields.io/github/workflow/status/kai687/sphinxawesome-codelinter/Run%20unit%20tests%20against%20different%20versions%20of%20Python?label=tests&style=for-the-badge)](https://github.com/kai687/sphinxawesome-codelinter/actions?query=workflow%3A%22Run+unit+tests%22)
 [![Codecov](https://img.shields.io/codecov/c/gh/kai687/sphinxawesome-codelinter?style=for-the-badge)](https://codecov.io/gh/kai687/sphinxawesome-codelinter)
-![Supported Python Versions](https://img.shields.io/pypi/pyversions/sphinxawesome-codelinter?style=for-the-badge)
 ![Code style](https://img.shields.io/badge/Code%20Style-Black-000000?style=for-the-badge)
 
-This extension for the [Sphinx documentation generator](https://www.sphinx-doc.org) exposes code blocks in your documentation to an external tool.
-This can be used to check that code blocks are valid or follow a certain style.
+This extension for the [Sphinx documentation generator](https://www.sphinx-doc.org)
+exposes code blocks in your documentation to an external tool. This can be used to check
+that code blocks are valid or follow a certain style.
 
 ## Installation
 
@@ -17,7 +18,8 @@ Install the extension:
 pip install sphinxawesome-codelinter
 ```
 
-This Sphinx extension works with Python versions newer than 3.6 and recent Sphinx releases.
+This Sphinx extension works with Python versions newer than 3.6 and recent Sphinx
+releases.
 
 ## Configuration
 
@@ -41,8 +43,8 @@ codelinter_languages = {
 }
 ```
 
-The Python command `python -m json.tool` returns an error for non-valid JSON code.
-For linting YAML code blocks, you could install the `yamllint` tool and add:
+The Python command `python -m json.tool` returns an error for non-valid JSON code. For
+linting YAML code blocks, you could install the `yamllint` tool and add:
 
 ```python
 codelinter_languages = {
@@ -71,6 +73,6 @@ files.
 ## Use
 
 The extension exposes a builder in Sphinx. Use `sphinx-build -b codelinter` to run it.
-No output is written to disk.
-If the codelinter tool exits with a non-zero return value, it logs a warning.
-You can use the `sphinx-build -W` option to turn warnings into errors and stop the build process.
+No output is written to disk. If the codelinter tool exits with a non-zero return value,
+it logs a warning. You can use the `sphinx-build -W` option to turn warnings into errors
+and stop the build process.
