@@ -36,7 +36,7 @@ flake8-bandit = "^2.1.2"
 flake8-bugbear = "^21.11.29"
 flake8-docstrings = "^1.6.0"
 black = "^21.12b0"
-mypy = "^0.910"
+mypy = "^0.920"
 pytype = {version = "^2021.5.6", python = "3.6 || 3.7 || 3.8"}
 typeguard = "^2.13.3"
 safety = "^1.10.3"
