@@ -1,21 +1,21 @@
 version: 2
 updates:
-- package-ecosystem: pip
-  directory: "/"
-  schedule:
-    interval: weekly
-    day: sunday
-    timezone: Europe/Berlin
-  open-pull-requests-limit: 10
-  assignees:
-  - kai687
-  ignore:
-  - dependency-name: flake8-annotations
-    versions:
-    - 2.6.2
-  - dependency-name: typeguard
-    versions:
-    - 2.12.0
-  - dependency-name: pytype
-    versions:
-    - 2021.4.1
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: sunday
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 10
+    assignees:
+      - kai687
+    ignore:
+      - dependency-name: flake8-annotations
+        versions:
+          - 2.6.2
+      - dependency-name: typeguard
+        versions:
+          - 2.12.0
+      - dependency-name: pytype
+        versions:
+          - 2021.4.1
