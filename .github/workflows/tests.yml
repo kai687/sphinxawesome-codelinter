@@ -9,10 +9,9 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8, 3.9]
-        sphinx-version: ["2.*", "3.*"]
+        python-version: [3.7, 3.8, 3.9, 3.10]
 
-    name: Python ${{ matrix.python-version }}, Sphinx ${{ matrix.sphinx-version }}
+    name: Python ${{ matrix.python-version }} test
 
     steps:
       - uses: actions/checkout@v2
@@ -22,7 +21,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
-          pip install --constraint=.github/workflows/constraints.txt poetry nox yamllint
+          pip install --constraint=.github/workflows/constraints.txt poetry nox yamllint nox-poetry
       - name: Run unit tests with nox
         run: |
-          nox --sessions "tests-${{ matrix.python-version }}(sphinx='${{matrix.sphinx-version}}')"
+          nox --sessions tests --python ${{ matrix.python-version }}
