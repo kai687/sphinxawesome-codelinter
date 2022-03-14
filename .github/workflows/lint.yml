@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.7, 3.8, 3.9, 3.10]
+        python-version: ["3.7", "3.8", "3.9", "3.10"]
 
     name: Python ${{ matrix.python-version }}
 
@@ -23,5 +23,4 @@ jobs:
         run: |
           pip install --constraint=.github/workflows/constraints.txt poetry nox yamllint nox-poetry
       - name: Run nox workflow
-        run: |
-          nox -p ${{ matrix.python-version }} -k "not (tests or coverage)"
+        run: nox -p ${{ matrix.python-version }} -k "not (tests or coverage)"
