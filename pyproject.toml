@@ -39,7 +39,7 @@ black = "^22.3"
 mypy = "^0.961"
 pytype = {version = "^2021.5.6", python = "3.6 || 3.7 || 3.8"}
 typeguard = "^2.13.3"
-safety = "^1.10.3"
+safety = "^2.0.0"
 flake8_implicit_str_concat = "^0.2.0"
 isort = "^5.10.1"
 types-docutils = "^0.18.3"
