@@ -957,7 +957,7 @@ test = ["pytest", "typing-extensions", "mypy"]
 
 [[package]]
 name = "types-docutils"
-version = "0.18.3"
+version = "0.19.0"
 description = "Typing stubs for docutils"
 category = "dev"
 optional = false
@@ -1031,7 +1031,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.6.2,<4.0.0"
-content-hash = "9f6ed6b8fda952e43b57e6802963b0a18049e7ba5ef4dd9a8bbe9c39076540a5"
+content-hash = "990aef0b9bba5cb880e0271dbeca2252d2326405bce837b0a3f391b65a13f5fe"
 
 [metadata.files]
 alabaster = []

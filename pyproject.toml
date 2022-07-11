@@ -42,7 +42,7 @@ typeguard = "^2.13.3"
 safety = "^2.0.0"
 flake8_implicit_str_concat = "^0.2.0"
 isort = "^5.10.1"
-types-docutils = "^0.18.3"
+types-docutils = "^0.19.0"
 
 [tool.coverage.paths]
 source = ["src"]
