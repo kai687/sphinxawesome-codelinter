@@ -1019,7 +1019,7 @@ testing = ["coverage (>=4)", "coverage-enable-subprocess (>=1)", "flaky (>=3)", 
 
 [[package]]
 name = "yamllint"
-version = "1.27.1"
+version = "1.28.0"
 description = "A linter for YAML files."
 category = "dev"
 optional = false
@@ -1045,7 +1045,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=4.6)", "pytest-black (
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.6.2,<4.0.0"
-content-hash = "e1ed80cb01d9824d654c8e8593cea4c026b23d0f00790e9fb99026e7b0a99537"
+content-hash = "09321d5f315846db8308af8803c332f4751767025f29b7a7215df8d53ad227c5"
 
 [metadata.files]
 alabaster = [
@@ -1652,7 +1652,7 @@ virtualenv = [
     {file = "virtualenv-20.13.3.tar.gz", hash = "sha256:e9dd1a1359d70137559034c0f5433b34caf504af2dc756367be86a5a32967134"},
 ]
 yamllint = [
-    {file = "yamllint-1.27.1.tar.gz", hash = "sha256:e688324b58560ab68a1a3cff2c0a474e3fed371dfe8da5d1b9817b7df55039ce"},
+    {file = "yamllint-1.28.0.tar.gz", hash = "sha256:9e3d8ddd16d0583214c5fdffe806c9344086721f107435f68bad990e5a88826b"},
 ]
 zipp = [
     {file = "zipp-3.6.0-py3-none-any.whl", hash = "sha256:9fe5ea21568a0a70e50f273397638d39b03353731e6cbbb3fd8502a33fec40bc"},
