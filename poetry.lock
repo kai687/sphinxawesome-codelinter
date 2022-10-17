@@ -978,7 +978,7 @@ test = ["mypy", "pytest", "typing-extensions"]
 
 [[package]]
 name = "types-docutils"
-version = "0.19.1"
+version = "0.19.1.1"
 description = "Typing stubs for docutils"
 category = "dev"
 optional = false
@@ -1644,8 +1644,8 @@ typeguard = [
     {file = "typeguard-2.13.3.tar.gz", hash = "sha256:00edaa8da3a133674796cf5ea87d9f4b4c367d77476e185e80251cc13dfbb8c4"},
 ]
 types-docutils = [
-    {file = "types-docutils-0.19.1.tar.gz", hash = "sha256:7df133b87105af410fc6a992030a70ee9f5a2c2636c5afe7e0de285eb9fdb015"},
-    {file = "types_docutils-0.19.1-py3-none-any.whl", hash = "sha256:6b110b17ba4bfbde765b69acca6a6da373094d99a5a3bce1d5a8c9d29b293d89"},
+    {file = "types-docutils-0.19.1.1.tar.gz", hash = "sha256:be0a51ba1c7dd215d9d2df66d6845e63c1009b4bbf4c5beb87a0d9745cdba962"},
+    {file = "types_docutils-0.19.1.1-py3-none-any.whl", hash = "sha256:a024cada35f0c13cc45eb0b68a102719018a634013690b7fef723bcbfadbd1f1"},
 ]
 typing-extensions = [
     {file = "typing_extensions-4.1.1-py3-none-any.whl", hash = "sha256:21c85e0fe4b9a155d0799430b0ad741cdce7e359660ccbd8b530613e8df88ce2"},
