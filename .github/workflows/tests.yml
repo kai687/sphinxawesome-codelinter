@@ -28,10 +28,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pipx install --pip-args=--constraint=./github/workflows/constraints.txt poetry
-          pipx install --pip-args=--constraint=./github/workflows/constraints.txt nox
-          pipx inject --pip-args=--constraint=./github/workflows/constraints.txt nox nox-poetry
-          pipx install --pip-args=--constraint=./github/workflows/constraints.txt yamllint
+          pipx install --pip-args=--constraint=constraints.txt poetry
+          pipx install --pip-args=--constraint=constraints.txt nox
+          pipx inject --pip-args=--constraint=constraints.txt nox nox-poetry
+          pipx install --pip-args=--constraint=constraints.txt yamllint
           nox --version
           poetry --version
           yamllint --version
