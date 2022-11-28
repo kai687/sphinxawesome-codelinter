@@ -1,4 +1,3 @@
----
 name: Publish a new version on PyPI
 
 on:
@@ -10,18 +9,28 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.10
+          python-version: 3.11
+
+      - name: Update pip and install pipx
+        run: |
+          pip install -U pip pipx
+          pip --version
+          pipx --version
+
       - name: Install Poetry
         run: |
-          pip install --constraint=.github/workflows/constraints.txt poetry
-          poetry install -v --no-dev
+          pipx install --pip-args=--constraint=constraints.txt poetry
+          poetry --version
+
       - name: Build Packages
         run: |
           poetry build
+
       - name: Publish to PyPI
         env:
           POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
