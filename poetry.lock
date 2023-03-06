@@ -518,19 +518,18 @@ pydocstyle = ">=2.1"
 
 [[package]]
 name = "flake8-implicit-str-concat"
-version = "0.2.0"
+version = "0.4.0"
 description = "Flake8 plugin to encourage correct string literal concatenation."
 category = "dev"
 optional = false
-python-versions = "~=3.6"
+python-versions = "~=3.7"
 files = [
-    {file = "flake8_implicit_str_concat-0.2.0-py2.py3-none-any.whl", hash = "sha256:ea856c22cd8dbd4ecb8d091e92784ce09a3083f1763df895693bf887d21acef5"},
-    {file = "flake8_implicit_str_concat-0.2.0.tar.gz", hash = "sha256:a662364c0389a14f5c94a807eda3ac81ab545ba8d75aa244c022af4a7b121eec"},
+    {file = "flake8_implicit_str_concat-0.4.0-py3-none-any.whl", hash = "sha256:b91805a3e0ff30ae2890830548478af25c79a4a579ec402a6ba3538043dff60c"},
+    {file = "flake8_implicit_str_concat-0.4.0.tar.gz", hash = "sha256:b6acf233afee943dc1802ef4bc242a19f0419fac9943739e235d3f2aaf616361"},
 ]
 
 [package.dependencies]
-attrs = ">=19.3,<21"
-more-itertools = ">=8.0.2,<9"
+more-itertools = {version = ">=8.0.2", markers = "python_version <= \"3.9\""}
 
 [[package]]
 name = "flake8-polyfill"
@@ -1679,4 +1678,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.7,<4.0.0"
-content-hash = "3de721e5de35f8135113102767cc759871df82c84375dbfae8cf3899d1dbf5b7"
+content-hash = "ea8ce23e85ba6bef7b9f787eb21d1248a0ae7b377f36000d00add7ac78a9f92a"
