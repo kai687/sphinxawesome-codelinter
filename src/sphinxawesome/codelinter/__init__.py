@@ -57,7 +57,7 @@ class CodeLinter(Builder):
         Return an iterable of outdated output files, or a string describing what an
         update will build.
         """
-        return self.env.found_docs
+        return self.env.found_docs  # pragma: nocover
 
     def get_target_uri(
         self: "CodeLinter", docname: str, typ: Optional[str] = None
@@ -75,7 +75,7 @@ class CodeLinter(Builder):
         # it has the language as key and the tool as value.
         code_lang = self.app.config.codelinter_languages
 
-        for code in doctree.traverse(nodes.literal_block):
+        for code in doctree.findall(nodes.literal_block):
             if code["language"] in code_lang:
                 line_no = get_node_line(code)
                 logger.info(
