@@ -6,13 +6,12 @@ from pathlib import Path
 
 import pytest
 from sphinx.application import Sphinx
-
 from sphinxawesome.codelinter import __version__
 
 
 def test_returns_version() -> None:
     """It has the correct version."""
-    assert __version__ == "1.0.5"
+    assert __version__ == "2.0.0"
 
 
 def test_can_access_rootdir(rootdir: Path) -> None:
