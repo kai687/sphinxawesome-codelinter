@@ -12,11 +12,7 @@ This was primarily designed (and tested) for linting YAML or JSON code blocks.
 :license: MIT, see LICENSE for details
 """
 
-try:
-    from importlib.metadata import PackageNotFoundError, version  # type: ignore
-except ImportError:  # pragma: no cover
-    from importlib_metadata import version, PackageNotFoundError  # type: ignore
-
+from importlib.metadata import PackageNotFoundError, version
 from io import BytesIO
 from subprocess import PIPE, STDOUT, Popen  # noqa: S404
 from typing import Any, Dict, Iterable, Optional, Set, Union
@@ -51,27 +47,29 @@ class CodeLinter(Builder):
     epilog = __("Lint code blocks.")
     allow_parallel = True
 
-    def init(self) -> None:
+    def init(self: "CodeLinter") -> None:
         """Initialize."""
         pass
 
-    def get_outdated_docs(self) -> Union[str, Iterable[str]]:
+    def get_outdated_docs(self: "CodeLinter") -> Union[str, Iterable[str]]:
         """Check for outdated files.
 
         Return an iterable of outdated output files, or a string describing what an
         update will build.
         """
-        return self.env.found_docs  # type: ignore[union-attr] # pragma: no cover
+        return self.env.found_docs
 
-    def get_target_uri(self, docname: str, typ: Optional[str] = None) -> str:
+    def get_target_uri(
+        self: "CodeLinter", docname: str, typ: Optional[str] = None
+    ) -> str:
         """Return Target URI for a document name."""
         return ""  # pragma: no cover
 
-    def prepare_writing(self, docnames: Set[str]) -> None:
-        """Steps to execute before documents are written."""
+    def prepare_writing(self: "CodeLinter", docnames: Set[str]) -> None:
+        """Run these steps before documents are written."""
         return
 
-    def write_doc(self, docname: str, doctree: nodes.Node) -> None:
+    def write_doc(self: "CodeLinter", docname: str, doctree: nodes.Node) -> None:
         """Execute the builder."""
         # Read the dict ``codelinter_languages`` from ``conf.py``
         # it has the language as key and the tool as value.
@@ -106,7 +104,7 @@ class CodeLinter(Builder):
                 else:
                     logger.info(" " + darkgreen("OK"))
 
-    def finish(self) -> None:
+    def finish(self: "CodeLinter") -> None:
         """Finish the build process."""
         pass
 
