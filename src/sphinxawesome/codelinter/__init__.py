@@ -14,7 +14,7 @@ This was primarily designed (and tested) for linting YAML or JSON code blocks.
 
 from importlib.metadata import PackageNotFoundError, version
 from io import BytesIO
-from subprocess import PIPE, STDOUT, Popen  # noqa: S404
+from subprocess import PIPE, STDOUT, Popen
 from typing import Any, Dict, Iterable, Optional, Set, Union
 
 from docutils import nodes
@@ -87,8 +87,8 @@ class CodeLinter(Builder):
                 logger.debug(cmd)
                 logger.debug(code.astext())
                 try:
-                    pipe = Popen(  # noqa: S603
-                        cmd, stdin=PIPE, stdout=PIPE, stderr=STDOUT
+                    pipe = Popen(
+                        cmd, stdin=PIPE, stdout=PIPE, stderr=STDOUT  # noqa: S603
                     )
                     out, _ = pipe.communicate(input=io_obj.read())
                 except FileNotFoundError:
