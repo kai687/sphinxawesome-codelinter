@@ -33,7 +33,7 @@ mypy = "^1.0"
 typeguard = ">=2.13.3,<4.0.0"
 safety = "^2.3.1"
 types-docutils = "^0.19.1"
-ruff = ">=0.0.254,<0.0.263"
+ruff = ">=0.0.254,<0.0.264"
 
 [tool.coverage.paths]
 source = ["src"]
