@@ -2,5 +2,5 @@ nox==2023.4.22
 nox_poetry==1.0.3
 pipx==1.2.1
 pipx==1.2.1
-poetry==1.7.0
+poetry==1.7.1
 yamllint==1.33.0
