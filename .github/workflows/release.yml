@@ -11,10 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up Python 3.11
+      - name: Set up Python 3.12
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: 3.12
 
       - name: Update pip and install pipx
         run: |
@@ -25,6 +25,7 @@ jobs:
       - name: Install Poetry
         run: |
           pipx install --pip-args=--constraint=constraints.txt poetry
+          pipx inject poetry poetry-plugin-export
           poetry --version
 
       - name: Build Packages
