@@ -105,6 +105,6 @@ def safety(session: nox.Session) -> None:
 @nox.session(python=python_versions[-1])
 def coverage(session: nox.Session) -> None:
     """Upload coverage report."""
-    session.install("dev", ".", "coverage[toml]", "codecov")
+    session.install("dev", ".", "coverage[toml]", "codecov", "sphinx")
     session.run("coverage", "xml", "--fail-under=0")
     session.run("codecov", *session.posargs)
