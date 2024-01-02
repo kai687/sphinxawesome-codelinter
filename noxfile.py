@@ -97,9 +97,9 @@ def mypy(session: nox.Session) -> None:
 @nox.session(python=python_versions[-1])
 def safety(session: nox.Session) -> None:
     """Check for insecure dependencies with safety."""
-    requirements = session.poetry.export_requirements()
+    session.export("dev", "requirements.txt")
     session.install("dev", "safety")
-    session.run("safety", "check", f"--file={requirements}", "--full-report")
+    session.run("safety", "check", "--file=requirements.txt", "--full-report")
 
 
 @nox.session(python=python_versions[-1])
