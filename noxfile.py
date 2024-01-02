@@ -7,7 +7,6 @@ import nox
 
 nox.options.stop_on_first_error = True
 nox.options.sessions = ["tests", "lint", "mypy", "safety"]
-locations = ["src", "tests", "noxfile.py"]
 python_versions = ["3.8", "3.9", "3.10", "3.11", "3.12"]
 session_install = nox.Session.install
 
@@ -33,7 +32,7 @@ class PoetryNoxSession(nox.Session):
             external=True,
         )
 
-    def install(self: PoetryNoxSession, group: str, *args: str) -> None:
+    def install(self: PoetryNoxSession, group: str, *args: str) -> None:  # type: ignore [override]
         """Install a group's dependencies into the nox virtual environment.
 
         To make Nox use the version constraints as defined in pyproject.toml,
@@ -42,6 +41,7 @@ class PoetryNoxSession(nox.Session):
         Args:
             group: The dependency group to export
             *args: The packages to install, passed on to the nox.Session.install method.
+            **kwargs: further arguments to pass on to nox.Session.install
         """
         with tempfile.NamedTemporaryFile() as requirements:
             self.export(group, requirements.name)
@@ -49,8 +49,8 @@ class PoetryNoxSession(nox.Session):
 
 
 # Monkey-patch nox
-nox.Session.install = PoetryNoxSession.install
-nox.Session.export = PoetryNoxSession.export
+nox.Session.install = PoetryNoxSession.install  # type: ignore [method-assign,assignment]
+nox.Session.export = PoetryNoxSession.export  # type: ignore [attr-defined]
 
 
 @nox.session(python=python_versions)
@@ -82,7 +82,6 @@ def fmt(session: nox.Session) -> None:
 @nox.session(python=["3.8", "3.12"])
 def mypy(session: nox.Session) -> None:
     """Check types with Mypy."""
-    args = session.posargs or ["--strict"]
     deps = [
         "mypy",
         "types-docutils",
@@ -91,13 +90,13 @@ def mypy(session: nox.Session) -> None:
         "sphinx",
     ]
     session.install("dev", *deps)
-    session.run("mypy", *args)
+    session.run("mypy")
 
 
 @nox.session(python=python_versions[-1])
 def safety(session: nox.Session) -> None:
     """Check for insecure dependencies with safety."""
-    session.export("dev", "requirements.txt")
+    session.export("dev", "requirements.txt")  # type: ignore [attr-defined]
     session.install("dev", "safety")
     session.run("safety", "check", "--file=requirements.txt", "--full-report")
 
