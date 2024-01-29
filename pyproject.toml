@@ -30,14 +30,14 @@ pytest = "^8.0"
 yamllint = "^1.28"
 pytest-cov = "^4.0"
 coverage = {extras = ["toml"], version = "^7.4"}
-black = "^23.1"
+black = "^24.1"
 mypy = "^1.0"
 typeguard = ">=2.13.3,<5.0.0"
 safety = "^3.0.1"
 types-docutils = ">=0.19.1,<0.21.0"
 
 [tool.poetry.group.lint.dependencies]
-black = "^23.1"
+black = "^24.1"
 pre-commit = "^3.1.1"
 ruff = ">=0.0.254,<0.1.15"
 
