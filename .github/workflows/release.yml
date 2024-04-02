@@ -15,18 +15,14 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: 3.12
+          cache: pip
 
-      - name: Update pip and install pipx
+      - name: Install dependencies
         run: |
-          pip install -U pip pipx
+          pip install -U pip poetry poetry-plugin-export
           pip --version
-          pipx --version
-
-      - name: Install Poetry
-        run: |
-          pipx install --pip-args=--constraint=constraints.txt poetry
-          pipx inject poetry poetry-plugin-export
           poetry --version
+          poetry self show plugins
 
       - name: Build Packages
         run: |

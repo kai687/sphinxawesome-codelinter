@@ -12,22 +12,16 @@ jobs:
       - name: Set up python 3.12
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-
-      - name: Update pip and install pipx
-        run: |
-          pip install -U pip pipx
-          pip --version
-          pipx --version
+          python-version: 3.12
+          cache: pip
 
       - name: Install dependencies
         run: |
-          pipx install --pip-args=--constraint=constraints.txt poetry
-          pipx inject poetry poetry-plugin-export
-          pipx install --pip-args=--constraint=constraints.txt nox
-          pipx inject --pip-args=--constraint=constraints.txt nox nox-poetry
+          pip install -U pip pipx nox poetry-plugin-export nox-poetry
+          pip --version
           nox --version
           poetry --version
+          poetry self show plugins
 
       - name: Run nox workflow
         run: nox --sessions "tests" --python "3.12" coverage
