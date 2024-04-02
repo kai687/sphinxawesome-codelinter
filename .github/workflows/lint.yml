@@ -22,7 +22,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -U pip poetry nox nox-poetry poetry-plugin-export
+          pip install -U pip poetry nox poetry-plugin-export
           pip --version
           nox --version
           poetry --version

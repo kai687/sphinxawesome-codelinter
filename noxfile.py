@@ -1,4 +1,5 @@
 """Nox sessions."""
+
 from __future__ import annotations
 
 import tempfile
@@ -67,16 +68,16 @@ def lint(session: nox.Session) -> None:
     """Lint with ruff."""
     deps = ["ruff"]
     session.install("lint", ".", *deps)
-    session.run("ruff", ".")
+    session.run("ruff", "check", ".")
 
 
 @nox.session(python=python_versions[-1])
 def fmt(session: nox.Session) -> None:
     """Format code."""
-    deps = ["ruff", "black"]
+    deps = ["ruff"]
     session.install("lint", ".", *deps)
-    session.run("ruff", "check", ".", "--select", "I", "--fix")
-    session.run("black", ".")
+    session.run("ruff", "check", ".", "--fix")
+    session.run("ruff", "format", ".")
 
 
 @nox.session(python=["3.8", "3.12"])
