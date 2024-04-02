@@ -22,7 +22,7 @@ jobs:
 
       - name: Update pip and install pipx
         run: |
-          pip install -U pip nox nox-poetry poetry-plugin-export yamllint
+          pip install -U pip nox poetry-plugin-export yamllint
           pip --version
           nox --version
           poetry --version

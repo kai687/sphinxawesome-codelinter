@@ -88,7 +88,10 @@ class CodeLinter(Builder):
                 logger.debug(code.astext())
                 try:
                     pipe = Popen(
-                        cmd, stdin=PIPE, stdout=PIPE, stderr=STDOUT  # noqa: S603
+                        cmd,
+                        stdin=PIPE,
+                        stdout=PIPE,
+                        stderr=STDOUT,
                     )
                     out, _ = pipe.communicate(input=io_obj.read())
                 except FileNotFoundError:
