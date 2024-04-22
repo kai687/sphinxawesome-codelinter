@@ -22,7 +22,7 @@ from sphinx.application import Sphinx
 from sphinx.builders import Builder
 from sphinx.locale import __
 from sphinx.util import logging
-from sphinx.util.console import darkgreen, red  # type: ignore
+from sphinx.util.console import darkgreen, red  # type: ignore[attr-defined]
 from sphinx.util.nodes import get_node_line
 
 logger = logging.getLogger(__name__)

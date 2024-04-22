@@ -22,7 +22,7 @@ packages = [
 python = "^3.8"
 sphinx = [
   { version = "<7.2", python = ">=3.8,<3.9"},
-  { version = "^7.2,<7.3", python = ">=3.9,<=3.12"},
+  { version = "^7.2,<7.4", python = ">=3.9,<=3.13"},
 ]
 
 [tool.poetry.group.dev.dependencies]
@@ -34,13 +34,14 @@ mypy = "^1.9"
 typeguard = ">=2.13.3,<5.0.0"
 safety = "^3.0.1"
 types-docutils = ">=0.19.1,<0.21.0"
+defusedxml = "0.7.1"
 
 [tool.poetry.group.lint.dependencies]
 pre-commit = [
   { version = "^3.5", python = ">=3.8,<3.9"},
   { version = "^3.6", python = ">=3.9,<=3.12"},
 ]
-ruff = ">=0.0.269,<0.3.8"
+ruff = ">=0.0.269,<0.4.2"
 
 [tool.coverage.paths]
 source = ["src"]
@@ -61,11 +62,7 @@ pretty = true
 strict = true
 show_column_numbers = true
 warn_unreachable = true
-warn_unused_ignores = true
-
-# [[tool.mypy.overrides]]
-# module = ["nox"]
-# ignore_missing_imports = true
+warn_unused_ignores = false
 
 [tool.ruff.lint]
 select = ["E", "F", "B", "Q", "W", "I", "C90", "D", "UP", "YTT", "S", "ANN", "SIM", "N"]
