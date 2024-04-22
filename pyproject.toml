@@ -22,7 +22,7 @@ packages = [
 python = "^3.8"
 sphinx = [
   { version = "<7.2", python = ">=3.8,<3.9"},
-  { version = "^7.2,<7.3", python = ">=3.9,<=3.12"},
+  { version = "^7.2,<7.4", python = ">=3.9,<=3.13"},
 ]
 
 [tool.poetry.group.dev.dependencies]
@@ -61,11 +61,7 @@ pretty = true
 strict = true
 show_column_numbers = true
 warn_unreachable = true
-warn_unused_ignores = true
-
-# [[tool.mypy.overrides]]
-# module = ["nox"]
-# ignore_missing_imports = true
+warn_unused_ignores = false
 
 [tool.ruff.lint]
 select = ["E", "F", "B", "Q", "W", "I", "C90", "D", "UP", "YTT", "S", "ANN", "SIM", "N"]
