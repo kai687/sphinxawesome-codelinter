@@ -33,7 +33,7 @@ coverage = {extras = ["toml"], version = "^7.4"}
 mypy = "^1.10"
 typeguard = ">=2.13.3,<5.0.0"
 safety = "^3.0.1"
-types-docutils = ">=0.19.1,<0.21.0"
+types-docutils = ">=0.19.1,<0.22.0"
 defusedxml = "0.7.1"
 
 [tool.poetry.group.lint.dependencies]
