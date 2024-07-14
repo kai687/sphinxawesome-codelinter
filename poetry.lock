@@ -1629,13 +1629,13 @@ typing-extensions = ">=3.7.4.3"
 
 [[package]]
 name = "types-docutils"
-version = "0.21.0.20240704"
+version = "0.21.0.20240711"
 description = "Typing stubs for docutils"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "types-docutils-0.21.0.20240704.tar.gz", hash = "sha256:30c3fbfa28d51eea2f37e1352c0d737d16a8251a9998bee2141bb16cce14e658"},
-    {file = "types_docutils-0.21.0.20240704-py3-none-any.whl", hash = "sha256:257625f615644690802f00bedcd7c486ee97c7451d46fea1008236b7f1888005"},
+    {file = "types-docutils-0.21.0.20240711.tar.gz", hash = "sha256:646f239e7afd88304995f444d3ea39639166c9445580ae5dcaf5515974c050ed"},
+    {file = "types_docutils-0.21.0.20240711-py3-none-any.whl", hash = "sha256:149d822bd02d77954f4e04d8e87fcd039db2101dbf564a1cd1b0fabbd543277b"},
 ]
 
 [[package]]
