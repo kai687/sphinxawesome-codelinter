@@ -6,6 +6,7 @@ from pathlib import Path
 
 import pytest
 from sphinx.application import Sphinx
+
 from sphinxawesome.codelinter import __version__  # type: ignore
 
 
