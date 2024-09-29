@@ -41,7 +41,7 @@ pre-commit = [
   { version = "^3.5", python = ">=3.8,<3.9"},
   { version = "^3.6", python = ">=3.9,<=3.12"},
 ]
-ruff = ">=0.5.1,<0.6.8"
+ruff = ">=0.5.1,<0.6.9"
 
 [tool.coverage.paths]
 source = ["src"]
