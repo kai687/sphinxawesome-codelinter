@@ -9,21 +9,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up python 3.12
+      - name: Set up python 3.13
         uses: actions/setup-python@v5
         with:
-          python-version: 3.12
+          python-version: 3.13
           cache: pip
 
       - name: Install dependencies
         run: |
-          pip install -U pip pipx nox poetry-plugin-export
+          pip install -U pip nox poetry poetry-plugin-export
           pip --version
           nox --version
           poetry --version
           poetry self show plugins
 
       - name: Run nox workflow
-        run: nox --sessions "tests" --python "3.12" coverage
+        run: nox --sessions "tests" --python "3.13" coverage
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

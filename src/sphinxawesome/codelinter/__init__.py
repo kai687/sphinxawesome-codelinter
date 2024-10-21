@@ -12,10 +12,12 @@ This was primarily designed (and tested) for linting YAML or JSON code blocks.
 :license: MIT, see LICENSE for details
 """
 
+from __future__ import annotations
+
 from importlib.metadata import PackageNotFoundError, version
 from io import BytesIO
 from subprocess import PIPE, STDOUT, Popen
-from typing import Any, Dict, Iterable, Optional, Set, Union
+from typing import AbstractSet, Any, Iterable
 
 from docutils import nodes
 from sphinx.application import Sphinx
@@ -47,29 +49,27 @@ class CodeLinter(Builder):
     epilog = __("Lint code blocks.")
     allow_parallel = True
 
-    def init(self: "CodeLinter") -> None:
+    def init(self) -> None:
         """Initialize."""
         pass
 
-    def get_outdated_docs(self: "CodeLinter") -> Union[str, Iterable[str]]:
+    def get_outdated_docs(self) -> str | Iterable[str]:
         """Check for outdated files.
 
         Return an iterable of outdated output files, or a string describing what an
         update will build.
         """
-        return self.env.found_docs  # pragma: nocover
+        return self.env.found_docs
 
-    def get_target_uri(
-        self: "CodeLinter", docname: str, typ: Optional[str] = None
-    ) -> str:
+    def get_target_uri(self, docname: str, typ: str | None = None) -> str:
         """Return Target URI for a document name."""
-        return ""  # pragma: no cover
+        return ""
 
-    def prepare_writing(self: "CodeLinter", docnames: Set[str]) -> None:
+    def prepare_writing(self, docnames: AbstractSet[str]) -> None:
         """Run these steps before documents are written."""
         return
 
-    def write_doc(self: "CodeLinter", docname: str, doctree: nodes.Node) -> None:
+    def write_doc(self, docname: str, doctree: nodes.Node) -> None:
         """Execute the builder."""
         # Read the dict ``codelinter_languages`` from ``conf.py``
         # it has the language as key and the tool as value.
@@ -107,12 +107,12 @@ class CodeLinter(Builder):
                 else:
                     logger.info(" " + darkgreen("OK"))
 
-    def finish(self: "CodeLinter") -> None:
+    def finish(self) -> None:
         """Finish the build process."""
         pass
 
 
-def setup(app: Sphinx) -> Dict[str, Any]:
+def setup(app: Sphinx) -> dict[str, Any]:
     """Register this extension with Sphinx."""
     app.add_builder(CodeLinter)
     app.add_config_value("codelinter_languages", {}, "env")

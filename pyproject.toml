@@ -22,7 +22,8 @@ packages = [
 python = "^3.8"
 sphinx = [
   { version = "<7.2", python = ">=3.8,<3.9"},
-  { version = "^7.2,<7.4", python = ">=3.9,<=3.13"},
+  { version = "^7.2,<7.4", python = ">=3.9,<3.11"},
+  { version = "^8", python = ">=3.11,<3.14" }
 ]
 
 [tool.poetry.group.dev.dependencies]
@@ -39,9 +40,9 @@ defusedxml = "0.7.1"
 [tool.poetry.group.lint.dependencies]
 pre-commit = [
   { version = "^3.5", python = ">=3.8,<3.9"},
-  { version = "^3.6", python = ">=3.9,<=3.12"},
+  { version = "^3.6", python = ">=3.9,<=3.13"},
 ]
-ruff = ">=0.5.1,<0.6.10"
+ruff = "^0.7"
 
 [tool.coverage.paths]
 source = ["src"]
@@ -66,7 +67,7 @@ warn_unused_ignores = false
 
 [tool.ruff.lint]
 select = ["E", "F", "B", "Q", "W", "I", "C90", "D", "UP", "YTT", "S", "ANN", "SIM", "N"]
-ignore = ["ANN401", "S603", "D203", "D213"]
+ignore = ["ANN101", "ANN401", "S603", "D203", "D213"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["S101"]

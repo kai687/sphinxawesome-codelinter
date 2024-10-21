@@ -8,7 +8,7 @@ import nox
 
 nox.options.stop_on_first_error = True
 nox.options.sessions = ["tests", "lint", "mypy", "safety"]
-python_versions = ["3.8", "3.9", "3.10", "3.11", "3.12"]
+python_versions = ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
 session_install = nox.Session.install
 
 
@@ -80,7 +80,7 @@ def fmt(session: nox.Session) -> None:
     session.run("ruff", "format", ".")
 
 
-@nox.session(python=["3.8", "3.12"])
+@nox.session(python=[python_versions[0], python_versions[-1]])
 def mypy(session: nox.Session) -> None:
     """Check types with Mypy."""
     deps = [
