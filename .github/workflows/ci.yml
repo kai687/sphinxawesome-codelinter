@@ -1,4 +1,4 @@
-name: Run unit tests
+name: Lint and test
 
 on: push
 
@@ -29,5 +29,5 @@ jobs:
           poetry self show plugins
           yamllint --version
 
-      - name: Run workflows
+      - name: Run tests, typecheck, and lint
         run: nox --python ${{ matrix.python-version }}
