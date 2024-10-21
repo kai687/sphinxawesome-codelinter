@@ -59,11 +59,11 @@ class CodeLinter(Builder):
         Return an iterable of outdated output files, or a string describing what an
         update will build.
         """
-        return self.env.found_docs
+        return self.env.found_docs  # pragma: nocover
 
     def get_target_uri(self, docname: str, typ: str | None = None) -> str:
         """Return Target URI for a document name."""
-        return ""
+        return ""  # pragma: nocover
 
     def prepare_writing(self, docnames: AbstractSet[str]) -> None:
         """Run these steps before documents are written."""
