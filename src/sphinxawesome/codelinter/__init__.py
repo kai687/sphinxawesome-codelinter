@@ -14,17 +14,18 @@ This was primarily designed (and tested) for linting YAML or JSON code blocks.
 
 from __future__ import annotations
 
+from collections.abc import Iterable, Set
 from importlib.metadata import PackageNotFoundError, version
 from io import BytesIO
 from subprocess import PIPE, STDOUT, Popen
-from typing import AbstractSet, Any, Iterable
+from typing import Any
 
 from docutils import nodes
 from sphinx.application import Sphinx
 from sphinx.builders import Builder
 from sphinx.locale import __
 from sphinx.util import logging
-from sphinx.util.console import darkgreen, red  # type: ignore[attr-defined]
+from sphinx.util.console import darkgreen, red
 from sphinx.util.nodes import get_node_line
 
 logger = logging.getLogger(__name__)
@@ -65,7 +66,7 @@ class CodeLinter(Builder):
         """Return Target URI for a document name."""
         return ""  # pragma: nocover
 
-    def prepare_writing(self, docnames: AbstractSet[str]) -> None:
+    def prepare_writing(self, docnames: Set[str]) -> None:
         """Run these steps before documents are written."""
         return
 

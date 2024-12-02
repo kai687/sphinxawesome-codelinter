@@ -1,33 +1,56 @@
-name: Lint and test
-
+name: CI
 on: push
-
 jobs:
   tests:
+    name: Run CI workflows
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
-
-    name: Python ${{ matrix.python-version }} test
-
+        python-version:
+          - 3.9
+          - 3.13
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up python ${{ matrix.python-version }}
+      - uses: astral-sh/setup-uv@4
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-
-      - name: Install dependencies
+      - name: Set up nox
         run: |
-          pip install -U pip nox poetry-plugin-export yamllint
-          pip --version
-          nox --version
-          poetry --version
-          poetry self show plugins
-          yamllint --version
-
-      - name: Run tests, typecheck, and lint
-        run: nox --python ${{ matrix.python-version }}
+          uv tool install nox
+      - name: Run workflow
+        run: |
+          nox -p ${{ matrix.python-version }}
+  build:
+    name: Build the package
+    runs-on: ubuntu-latest
+    needs:
+      - tests
+    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+      - name: Build packages
+        run: |
+          uv build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: python-packages
+          path: dist/
+  publish:
+    name: Publish package to PyPI
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    permissions:
+      id-token: write
+    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: python-packages
+          path: dist/
+      - name: Upload to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
