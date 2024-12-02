@@ -2,9 +2,6 @@
 
 [![License](https://img.shields.io/github/license/kai687/sphinxawesome-codelinter?color=blue&style=for-the-badge)](https://github.com/kai687/sphinxawesome-codelinter/blob/main/LICENSE)
 [![PyPI version](https://img.shields.io/pypi/v/sphinxawesome-codelinter?style=for-the-badge)](https://pypi.org/project/sphinxawesome-codelinter)
-[![PyTest Status](https://img.shields.io/github/workflow/status/kai687/sphinxawesome-codelinter/Run%20unit%20tests%20against%20different%20versions%20of%20Python?label=tests&style=for-the-badge)](https://github.com/kai687/sphinxawesome-codelinter/actions?query=workflow%3A%22Run+unit+tests%22)
-[![Codecov](https://img.shields.io/codecov/c/gh/kai687/sphinxawesome-codelinter?style=for-the-badge)](https://codecov.io/gh/kai687/sphinxawesome-codelinter)
-![Code style](https://img.shields.io/badge/Code%20Style-Black-000000?style=for-the-badge)
 
 The **awesome codelinter** extension for the
 [Sphinx documentation generator](https://www.sphinx-doc.org) lets you check that code
