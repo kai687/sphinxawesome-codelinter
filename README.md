@@ -73,3 +73,115 @@ Run `sphinx-build -b codelinter` to check your code blocks.
 If any tool returns a non-zero value, a warning is logged.
 To turn warnings into errors and stop the build process,
 use `sphinx-build -W`.
+
+## Bring your own tools
+
+Since the `codelinter_languages` dictionary accepts any program,
+you're not limited to existing solutions.
+
+The following example runs a custom linter on Python and C code blocks.
+It shows how you can achieve the following tasks:
+
+- Check that Python code passes [`mypy`](https://mypy-lang.org/) checks.
+  Mypy doesn't support reading from standard input,
+  so you can't use it directly.
+- Check that C code can compile without warnings.
+- Add C boilerplate code if there's a special comment in the code block.
+- Opt out of linting specific code blocks if there's a special comment.
+
+```python
+# File: docs/linters.py
+import argparse
+import subprocess
+import sys
+
+python_code_preface = """
+import numpy as np
+import customlib
+"""
+
+
+def lint_python(code: str) -> None:
+    full_code = python_code_preface + code
+    if "# no-check" in full_code:  # skip checking
+        return
+    subprocess.run(["mypy", "-c", f"{full_code}"], check=True)
+
+
+def lint_c(code: str) -> None:
+    if "// no-check" in code:  # skip checking
+        return
+
+    # it is a full example
+    if "// full" in code:
+        full_code = (
+            """
+#include <stdlib.h>
+#include <stdio.h>
+"""
+            + code
+        )
+    else:
+        full_code = (
+            """
+#include <stdlib.h>
+#include <stdio.h>
+
+int main() {
+"""
+            + code
+            + """
+    return 0;
+}
+"""
+        )
+    subprocess.run(
+        [
+            "gcc",
+            "-c",
+            "-x",
+            "c",
+            "-Wall",
+            "-Werror",
+            "-ansi",
+            "-std=c99",
+            "-pedantic",
+            "-pedantic-errors",
+            "-Wno-unused-variable",
+            "-Wno-unused-but-set-variable",
+            "-Wno-unused-local-typedefs",
+            "-o",
+            "/dev/null",
+            "-",
+        ],
+        input=full_code.encode(),
+        check=True,
+    )
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("linter", choices=("python", "c"))
+    args = parser.parse_args()
+    code = sys.stdin.read()
+
+    if args.linter == "python":
+        lint_python(code)
+    else:
+        lint_c(code)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+To use this linter, add the following to your Sphinx configuration:
+
+```python
+# File: conf.py
+codelinter_languages = {
+    "python": "python -m docs.linters python",
+    "c": "python -m docs.linters c",
+}
+```
