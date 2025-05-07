@@ -25,7 +25,7 @@ from sphinx.application import Sphinx
 from sphinx.builders import Builder
 from sphinx.locale import __
 from sphinx.util import logging
-from sphinx.util.console import darkgreen, red
+from sphinx.util.console import darkgreen, red  # type: ignore
 from sphinx.util.nodes import get_node_line
 
 logger = logging.getLogger(__name__)
@@ -103,7 +103,7 @@ class CodeLinter(Builder):
 
                 logger.info(" ")
                 if pipe.returncode != 0:
-                    logger.warning(red(f'Problem in {code["language"]}: '), nonl=True)
+                    logger.warning(red(f"Problem in {code['language']}: "), nonl=True)
                     logger.warning(out.decode())
                 else:
                     logger.info(" " + darkgreen("OK"))
