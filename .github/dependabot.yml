@@ -1,11 +1,18 @@
 version: 2
 updates:
-  - package-ecosystem: pip
+  - package-ecosystem: uv
     directory: "/"
     schedule:
       interval: weekly
       day: sunday
       timezone: Europe/Berlin
-    open-pull-requests-limit: 10
+    assignees:
+      - kai687
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: sunday
+      timezone: Europe/Berlin
     assignees:
       - kai687
