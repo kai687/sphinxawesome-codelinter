@@ -1,0 +1,5 @@
+[tools]
+uv = "latest"
+
+[hooks]
+postinstall = "uv tool install nox"

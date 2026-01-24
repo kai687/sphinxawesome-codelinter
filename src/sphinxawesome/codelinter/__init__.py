@@ -74,7 +74,7 @@ class CodeLinter(Builder):
         """Execute the builder."""
         # Read the dict ``codelinter_languages`` from ``conf.py``
         # it has the language as key and the tool as value.
-        code_lang = self.app.config.codelinter_languages
+        code_lang = self.config.codelinter_languages
 
         for code in doctree.findall(nodes.literal_block):
             if code["language"] in code_lang:

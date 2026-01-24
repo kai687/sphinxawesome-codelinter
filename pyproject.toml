@@ -1,6 +1,6 @@
 [project]
 name = "sphinxawesome-codelinter"
-version = "3.0.0"
+version = "3.0.1"
 description = "A Sphinx extension to expose code blocks to external tools for linting"
 readme = "README.md"
 authors = [
