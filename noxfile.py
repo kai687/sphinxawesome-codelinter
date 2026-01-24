@@ -43,6 +43,7 @@ def fmt(session: nox.Session) -> None:
 @nox.session(python=python_versions)
 def typecheck(session: nox.Session) -> None:
     """Check type annotations."""
+    session.install("-e", ".")
     session.install(*dev_dependencies)
     session.run("pyright")
 
