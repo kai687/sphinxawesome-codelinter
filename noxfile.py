@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import nox
+import nox_uv
 
 nox.options.stop_on_first_error = True
 nox.options.sessions = ["tests", "lint", "typecheck"]
@@ -13,44 +14,35 @@ supported_python_versions = nox.project.python_versions(project)
 python_versions = [supported_python_versions[0], supported_python_versions[-1]]
 
 
-dev_dependencies = nox.project.dependency_groups(project, "dev")
-
-
-@nox.session(python=python_versions)
-def tests(session: nox.Session) -> None:
+@nox_uv.session(python=python_versions, uv_groups=["dev"])
+def tests(s: nox.Session) -> None:
     """Run unit tests."""
-    args = session.posargs or ["--cov"]
-    session.install("-e", ".")
-    session.install(*dev_dependencies)
-    session.run("pytest", *args)
+    args = s.posargs or ["--cov"]
+    s.run("pytest", *args)
 
 
-@nox.session(python=python_versions)
-def lint(session: nox.Session) -> None:
+@nox_uv.session(python=python_versions, uv_groups=["dev"])
+def lint(s: nox.Session) -> None:
     """Lint with ruff."""
-    session.install(*dev_dependencies)
-    session.run("ruff", "check", ".")
+    s.run("ruff", "check", ".")
 
 
-@nox.session(python=python_versions[-1])
-def fmt(session: nox.Session) -> None:
+@nox.session
+def fmt(s: nox.Session) -> None:
     """Format code."""
-    session.install("ruff")
-    session.run("ruff", "check", ".", "--fix")
-    session.run("ruff", "format", ".")
+    s.install("ruff")
+    s.run("ruff", "check", ".", "--fix")
+    s.run("ruff", "format", ".")
 
 
-@nox.session(python=python_versions)
-def typecheck(session: nox.Session) -> None:
+@nox_uv.session(python=python_versions, uv_groups=["dev"])
+def typecheck(s: nox.Session) -> None:
     """Check type annotations."""
-    session.install("-e", ".")
-    session.install(*dev_dependencies)
-    session.run("pyright")
+    s.run("pyright")
 
 
-@nox.session(python=python_versions[-1])
-def coverage(session: nox.Session) -> None:
+@nox_uv.session(python=python_versions[-1], uv_groups=["dev"])
+def coverage(s: nox.Session) -> None:
     """Upload coverage report."""
-    session.install(*dev_dependencies)
-    session.run("coverage", "xml", "--fail-under=0")
-    session.run("codecov", *session.posargs)
+    s.run("coverage", "xml", "--fail-under=0")
+    s.run("codecov", *s.posargs)

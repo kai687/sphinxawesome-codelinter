@@ -41,6 +41,7 @@ dev = [
   "pytest-cov",
   "yamllint",
   "nox",
+  "nox-uv",
   "types-docutils",
   "ruff",
   "pyright",

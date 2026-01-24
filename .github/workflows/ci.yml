@@ -31,7 +31,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           enable-cache: true
       - name: Set up nox
-        run: uv tool install nox
+        run: uv tool install nox --with=nox_uv
       - name: Run workflow
         run: nox -p ${{ matrix.python-version }}
   build:
