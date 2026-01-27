@@ -2,4 +2,4 @@
 uv = "latest"
 
 [hooks]
-postinstall = "uv tool install nox"
+postinstall = "uv tool install nox --with=nox-uv"

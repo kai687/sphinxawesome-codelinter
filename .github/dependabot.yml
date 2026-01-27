@@ -6,6 +6,10 @@ updates:
       interval: weekly
       day: sunday
       timezone: Europe/Berlin
+    groups:
+      uv-packages:
+        patterns:
+          - "*"
     assignees:
       - kai687
   - package-ecosystem: github-actions

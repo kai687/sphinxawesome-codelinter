@@ -3,17 +3,13 @@ name = "sphinxawesome-codelinter"
 version = "3.0.1"
 description = "A Sphinx extension to expose code blocks to external tools for linting"
 readme = "README.md"
-authors = [
-  { name = "Kai Welke", email = "kai687@pm.me"}
-]
+requires-python = ">=3.9"
+authors = [{ name = "Kai Welke", email = "kai687@pm.me" }]
 classifiers = [
-  "Programming Language :: Python",
   "Framework :: Sphinx",
   "Framework :: Sphinx :: Extension",
-  "Topic :: Documentation",
-  "Topic :: Documentation :: Sphinx",
-  "Topic :: Software Development :: Documentation",
   "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
@@ -21,34 +17,58 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
+  "Topic :: Documentation",
+  "Topic :: Documentation :: Sphinx",
+  "Topic :: Software Development :: Documentation",
 ]
-requires-python = ">=3.9"
 dependencies = [
   "sphinx>7,<10",
 ]
 
 [project.urls]
-repository = "https://github.com/kai687/sphinxawesome-codelinter"
 issues = "https://github.com/kai687/sphinxawesome-codelinter/issues"
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+repository = "https://github.com/kai687/sphinxawesome-codelinter"
 
 [dependency-groups]
 dev = [
-  "pytest",
-  "pytest-cov",
-  "yamllint",
   "nox",
   "nox-uv",
-  "types-docutils",
-  "ruff",
   "pyright",
+  "pytest",
+  "pytest-cov",
+  "ruff",
+  "types-docutils",
+  "yamllint",
 ]
 
+[build-system]
+requires = ["uv_build>=0.9.26,<0.10.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "sphinxawesome.codelinter"
+
+[tool.pyright]
+include = ["src", "noxfile.py"]
+reportUnnecessaryTypeIgnoreComment = "warning"
+
 [tool.ruff.lint]
-select = ["E", "F", "B", "Q", "W", "I", "C90", "D", "UP", "YTT", "S", "ANN", "SIM", "N"]
+select = [
+  "E",
+  "F",
+  "B",
+  "Q",
+  "W",
+  "I",
+  "C90",
+  "D",
+  "UP",
+  "YTT",
+  "S",
+  "ANN",
+  "SIM",
+  "N"
+]
 ignore = ["ANN401", "S603", "D203", "D213"]
 
 [tool.ruff.lint.per-file-ignores]
@@ -56,10 +76,3 @@ ignore = ["ANN401", "S603", "D203", "D213"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
-
-[tool.pyright]
-include = ["src", "noxfile.py"]
-reportUnnecessaryTypeIgnoreComment = "warning"
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/sphinxawesome"]
