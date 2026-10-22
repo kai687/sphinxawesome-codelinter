@@ -38,7 +38,7 @@ def fmt(s: nox.Session) -> None:
 @nox_uv.session(python=python_versions, uv_groups=["dev"])
 def typecheck(s: nox.Session) -> None:
     """Check type annotations."""
-    s.run("pyright")
+    s.run("ty", "check")
 
 
 @nox_uv.session(python=python_versions[-1], uv_groups=["dev"])

@@ -12,7 +12,7 @@ from sphinxawesome.codelinter import __version__  # type: ignore
 
 def test_returns_version() -> None:
     """It has the correct version."""
-    assert __version__ == "3.0.1"
+    assert __version__ == "3.0.2"
 
 
 def test_can_access_rootdir(rootdir: Path) -> None:
