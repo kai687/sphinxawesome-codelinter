@@ -1,14 +1,14 @@
 [project]
 name = "sphinxawesome-codelinter"
-version = "3.0.1"
+version = "3.0.2"
 description = "A Sphinx extension to expose code blocks to external tools for linting"
 readme = "README.md"
+license = "MIT"
 requires-python = ">=3.9"
 authors = [{ name = "Kai Welke", email = "kai687@pm.me" }]
 classifiers = [
   "Framework :: Sphinx",
   "Framework :: Sphinx :: Extension",
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.9",
@@ -17,6 +17,7 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
   "Topic :: Documentation",
   "Topic :: Documentation :: Sphinx",
   "Topic :: Software Development :: Documentation",
@@ -33,7 +34,7 @@ repository = "https://github.com/kai687/sphinxawesome-codelinter"
 dev = [
   "nox",
   "nox-uv",
-  "pyright",
+  "ty",
   "pytest",
   "pytest-cov",
   "ruff",
@@ -42,15 +43,17 @@ dev = [
 ]
 
 [build-system]
-requires = ["uv_build>=0.9.26,<0.10.0"]
+requires = ["uv_build>=0.9.26,<0.14.0"]
 build-backend = "uv_build"
 
 [tool.uv.build-backend]
 module-name = "sphinxawesome.codelinter"
 
-[tool.pyright]
+[tool.ty.src]
 include = ["src", "noxfile.py"]
-reportUnnecessaryTypeIgnoreComment = "warning"
+
+[tool.ty.rules]
+unused-ignore-comment = "warn"
 
 [tool.ruff.lint]
 select = [
